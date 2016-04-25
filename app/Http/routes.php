@@ -20,3 +20,11 @@ Route::resource('places', 'PlaceController');
 Route::resource('galleries', 'GalleryController');
 
 Route::resource('blogs', 'BlogController');
+
+Route::group(['prefix' => 'admin'], function()
+{
+    Route::get('/', ['middleware' => 'admin', function()
+    {
+        return 'Admin namsepace...';
+    }]);
+});
