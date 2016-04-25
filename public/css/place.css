@@ -1,0 +1,287 @@
+#places {
+  background: #f8f8f8;
+}
+
+.fancybox{
+  display: block;
+  transition: all ease .3s;
+}
+
+.fancybox:hover{
+  -webkit-filter: grayscale(100%) brightness(110%);
+  filter: grayscale(100%) brightness(110%); 
+}
+
+.place-details-thumbnail {
+  height: 328px;
+  width: 100%;
+  border-radius: 4px;
+  background: url('../img/gallery/gallery01.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.place-details-title {
+  text-align: left;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.place-details-title i {
+  margin-right: 10px;
+  color: #0eb401;
+}
+
+.place-details-des {
+  font-size: 13px;
+  text-align: left;
+}
+
+.place-details-address {
+  text-align: left;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.place-details-address i {
+  margin-right: 5px;
+}
+
+.place-details-order {
+  text-align: left;
+  height: 30px;
+  margin-top: 10px;
+}
+
+.place-details-order-btn {
+  border: 2px solid blue;
+  width: 35%;
+  height: 30px;
+  background: #d02229;
+  color: #ffffff;
+  line-height: 30px;
+  font-size: 14px;
+  float: left;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.place-details-order-btn:hover {
+  cursor: pointer;
+}
+
+.place-details-order-btn i {
+  margin-right: 5px;
+}
+
+.place-details-order-text {
+  height: 30px;
+  font-size: 14px;
+  line-height: 30px;
+  float: left;
+  margin-left: 10px;
+  text-align: left;
+  font-style: none;
+  font-weight: bold;
+}
+
+.place-details-order-text i {
+  margin-right: 5px;
+}
+
+.place-details-order-text:hover {
+  cursor: pointer;
+}
+
+.place-details-time {
+  text-align: left;
+  margin-top: 10px;
+}
+
+.place-details-time i {
+  margin-right: 5px;
+}
+
+.place-details-price {
+  margin-top: 10px;
+  text-align: left;
+}
+
+.place-details-price i {
+  margin-right: 5px;
+}
+
+.place-details-rating{
+  margin: 15px 0;
+  padding: 5px 0;
+  border-top: 1px solid #f0f0f0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.rating-score {
+  color: #0eb401;
+  font-weight: bold;
+  font-size: 23px;
+  text-align: center;
+}
+
+#rating-comment {
+  color: #000000;
+  font-weight: 400;
+}
+
+.rating-content {
+  font-size: 12px;
+  font-style: italic;
+  text-align: center;
+}
+
+.review-gallery .row{
+  margin: 10px -7.5px;
+}
+
+.review-gallery .col-lg-2, .review-gallery .col-md-2, .review-gallery .col-sm-2, .review-gallery .col-xs-2{
+  padding: 0 7.5px;
+}
+
+.review-gallery-item{
+  margin: 0 auto 10px 0;
+  overflow: hidden;
+}
+
+.review-gallery-item img{
+  max-width: 100%;
+  height: 75px;
+  border-radius: 4px;
+}
+
+.place-details-hotline {
+  border-top: 4px solid #233976;
+  border-bottom: 4px solid #233976;
+  background: rgba(208, 34, 41, 0.8);
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 20px;
+  height: 50px;
+  line-height: 40px;
+  margin-top: 98%;
+}
+
+.place-details-hotline i {
+  margin-right: 10px;
+}
+
+.screenshots-gallery-item{
+  margin: 10px 0;
+  overflow: hidden;
+}
+
+.screenshots-gallery-item img{
+  max-width: 100%;
+}
+
+.status{
+  text-align: center;
+  font-style: italic;
+  font-size: 13px;
+}
+
+.comments {
+  background: #ffffff;
+  padding-bottom: 20px;
+  border: 1px solid #eee;
+}
+
+.comments-title {
+  text-align: center;
+  font-size: 13px;
+}
+
+.comments-point {
+  color: #0eb401;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.comments-item {
+  margin: 2px 0;
+  text-align: left;
+  background: #fafafa;
+  padding: 15px 0;
+}
+
+.comments-item i {
+  margin-left: 20px;
+  margin-right: 10px;
+}
+
+.comments-item-number {
+  width: 50px;
+  text-align: center;
+  float: right;
+  background: #ff9800;
+  color: #fff !important;
+  font-weight: bold;
+}
+
+.comments-item-number-empty {
+  background: none;
+}
+
+#map{
+  width: 100%;
+  height: 400px;
+}
+
+.place-detail-title{
+  font-family: 'Roboto Mono';
+  font-size: 22px;
+}
+
+.place-info{
+  margin: 20px 0;
+}
+
+.place-info li{
+  padding: 10px 0;
+}
+
+.place-info li i{
+  margin-right: 10px;
+  color: #ff9800; 
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px){
+  .container{
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1100px){
+  #right-panel{
+    display: none;
+  }
+
+  #left-panel{
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 768px){
+  .col-xs-12{
+    width: 100%;
+  }
+
+  #place-thumb{
+    display: none;
+  }
+
+  #place-full-info{
+    width: 100% !important;
+  }
+
+  .review-gallery-item img{
+    max-width: 100%;
+    height: auto !important;
+  }
+}

@@ -1,0 +1,100 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,800italic,800,700,700italic,600italic,600,400italic,300italic,300&subset=latin,vietnamese);
+@import url(https://fonts.googleapis.com/css?family=Roboto+Mono:700,700italic,500italic,500,400,400italic,300italic,300&subset=latin,vietnamese);
+
+body{
+  background: url('../img/bgform.jpg');
+  background-size: cover;
+  font-family: "Open Sans", sans-serif;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+a{
+  text-decoration: none;
+  color: #ffc107;
+  trasition: all ease .3s;
+}
+
+a:hover{
+  color: #ffa000;
+}
+
+.sform{
+  margin: 40px auto;
+  max-width: 480px;
+  padding: 50px 40px;
+  background: rgba(158, 158, 158, 0.3);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.sform h1{
+  text-align: center;
+  font-weight: bold;
+  margin: 0 auto 30px auto;
+}
+
+.sform .form-control{
+  margin-top: 25px;
+  padding: 25px 15px;
+  box-shadow: none;
+  border-radius: 0;
+  border: 2px solid #fff;
+  color: #fff;
+  background: transparent;
+}
+
+.sform .form-control:focus{
+  border-color: #ffc107;
+  color: #ffc107;
+}
+
+.sform .form-control::-webkit-input-placeholder{
+  color: #e0e0e0;
+}
+
+.sform .form-control:-moz-placeholder{
+  color: #e0e0e0;
+}
+
+.sform .form-control::-moz-placeholder{
+  color: #e0e0e0;
+}
+
+.sform .form-control:-ms-input-placeholder{
+  color: #e0e0e0;  
+}
+
+.sform .btn-main{
+  color: #fff;
+  font-family: 'Roboto Mono';
+  font-weight: bold;
+  text-transform: uppercase;
+  background: transparent;
+  padding: 20px 40px;
+  margin: 10px 0;
+  border-radius: 0;
+  border: 2px solid #fff;
+  transition: all ease .3s;
+  width: 100%;
+}
+
+.sform .btn-main:hover{
+  background: #ffc107; 
+  border-color: #ffc107;
+}
+
+.sform .remember-me{
+  margin-top: 25px;
+  margin-bottom: 15px;
+  text-align: left;
+}
+.sform .not-registerd{
+  margin-bottom: 5px;
+}
+
+.help-block{
+  text-align: left;
+  font-size: 13px;
+  color: #EE6E73;
+}
