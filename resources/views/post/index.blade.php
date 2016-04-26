@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+    | Blog
+@endsection
+
 @section('style')
     {!! Html::style('css/index.css') !!}
     {!! Html::style('css/blog.css') !!}

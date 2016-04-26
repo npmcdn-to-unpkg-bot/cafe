@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+    | Home
+@endsection
+
 @section('style')
     {!! Html::style('css/owlcarousel/owl.carousel.min.css') !!}
     {!! Html::style('css/owlcarousel/owl.theme.min.css') !!}

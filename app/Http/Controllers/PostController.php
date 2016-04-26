@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
+use Auth;
+use App\Post;
+use Session;
 
-class BlogController extends Controller
+class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +17,7 @@ class BlogController extends Controller
      */
     public function index()
     {
-        return view('blog.index');
+        return view('post.index');
     }
 
     /**
@@ -25,7 +27,7 @@ class BlogController extends Controller
      */
     public function create()
     {
-        return view('blog.create');
+        return view('post.create');
     }
 
     /**
@@ -36,7 +38,19 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, array(
+            'title' => 'required|max:255',
+            'body'  => 'required'
+        ));
+
+        $post = new Post(array(
+            'title' => $request->title,
+            'body' => $request->body
+        ));
+        Auth::user()->posts()->save($post);
+
+        Session::flash('success', 'This post was successfully saved.');
+        return redirect()->route('posts.show', $post->id);
     }
 
     /**
@@ -47,7 +61,7 @@ class BlogController extends Controller
      */
     public function show($id)
     {
-        return view('blog.show');
+        return view('post.show');
     }
 
     /**
@@ -58,7 +72,7 @@ class BlogController extends Controller
      */
     public function edit($id)
     {
-        return view('blog.edit');
+        return view('post.edit');
     }
 
     /**

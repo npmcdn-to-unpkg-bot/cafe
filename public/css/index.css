@@ -103,7 +103,7 @@ a{
   padding: 25px 20px;
 }
 
-.navbar-nav li a:hover{
+.navbar-nav li.active a, .navbar-nav li a:hover{
   color: #ffc107;
 }
 
@@ -825,4 +825,12 @@ a{
   .col-xs-12{
     width: 100%;
   }
+}
+
+.alert{
+  width: 300px;
+  position: fixed;
+  right: 10px;
+  bottom: 50px;
+  z-index: 999;
 }
