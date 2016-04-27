@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+    | Galleries
+@endsection
+
 @section('style')
     {!! Html::style('css/index.css') !!}
     {!! Html::style('css/gallery.css') !!}

@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+    | Place
+@endsection
+
 @section('style')
     {!! Html::style('libs/fancybox/source/jquery.fancybox.css') !!}
     {!! Html::style('libs/fancybox/source/helpers/jquery.fancybox-buttons.css') !!}

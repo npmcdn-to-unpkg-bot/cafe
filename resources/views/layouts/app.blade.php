@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <title>Cafe</title>
+    <title>Cafe @yield('title')</title>
 
     {{-- Favicon --}}
     <link href="{{ url('img/favicon.png') }}" rel="shortcut icon"/>
@@ -30,10 +30,10 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse align-right">
                 <ul class="nav navbar-nav bold">
-                    <li class="active"><a href="{{ url('/') }}">Home</a></li>
-                    <li><a href="{{ url('/places') }}">Địa điểm</a></li>
-                    <li><a href="{{ url('/galleries') }}">Bộ sưu tập</a></li>
-                    <li><a href="{{ url('/blogs') }}">Blogs</a></li>
+                    <li class="{{ $controller == 'HomeController'? 'active' : '' }}"><a href="{{ url('/') }}">Home</a></li>
+                    <li class="{{ $controller == 'PlaceController'? 'active' : '' }}"><a href="{{ url('/places') }}">Địa điểm</a></li>
+                    <li class="{{ $controller == 'GalleryController'? 'active' : '' }}"><a href="{{ url('/galleries') }}">Bộ sưu tập</a></li>
+                    <li class="{{ $controller == 'PostController'? 'active' : '' }}"><a href="{{ url('/posts') }}">Blogs</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right bold">
                     <!-- Authentication Links -->
@@ -44,7 +44,7 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle current-user" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                 <span class="normal-text name">Ben</span>
-                                <img alt="" src="img/user.jpg" class="avatar">
+                                <img alt="" src="{{ url('img/user.jpg') }}" class="avatar">
                             </a>
                             <ul class="dropdown-menu align-right">
                                 <li><a href="#">Your profile<i class="fa fa-reddit-alien fa-mg-left"></i></a></li>
@@ -71,6 +71,14 @@
             </div>
         </div>
     </nav>
+
+    {{-- Flash message --}}
+    @if (Session::has('success'))
+        <div class="alert alert-success alert-dismissible fade in" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+            {{ Session::get('success') }}
+        </div>
+    @endif
 
     {{-- Main content --}}
     @yield('content')
