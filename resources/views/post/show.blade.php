@@ -22,52 +22,14 @@
                                 </a>
                             </div>
                             <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
-                                <a href="#" class="author_name">John Smith</a>
-                                <p>Chia sẻ blog - 25/03/2016 - 17:55 | TP. HCM</p>
+                                <a href="#" class="author_name">{{ $user->name }}</a>
+                                <p>Created at: {{ date('M j, Y h:ia', strtotime($post->created_at)) }}</p>
                             </div>
                         </div>
-                        <h1 class="blog-title">(HCM) Khám phá 10 quán cà phê “chất” nhất Sài thành</h1>
+                        <h1 class="blog-title">{{ $post->title }}</h1>
                         <div class="content">
                             <div class="content-main">
-                                <h2>
-                                    <strong style="font-size: 16px;">1. L’Usine</strong>
-                                </h2>
-                                <p>
-                                    <span>Quán cà phê kiêm cửa hàng quần áo và phòng trưng bày nghệ thuật này nằm trong tòa nhà từng là Hotel de Saigon được xây dựng từ những năm 1890. L’Usine được tờ CNTraveler bình chọn là một trong những lý do để du khách tới TP HCM.</span>
-                                </p>
-                                <p>
-                                    <img alt="" src="../img/blogs-connect/blogs1.jpg">
-                                </p>
-                                <p>
-                                    <span>Những bức tường gạch trắng và đèn kiểu cổ tạo cho quán một phong cách du mục thú vị. Ngoài các món cà phê truyền thống của Việt Nam, du khách còn có thể thưởng thức những đồ uống và món ăn được chế biến theo phong cách châu Âu.</span>
-                                </p>
-                                <p>
-                                    <img alt="" src="../img/blogs-connect/blogs2.jpg">
-                                </p>
-                                <p>
-                                    <span>Hộn vịt lộn là món ăn rất phổ biến trong cuộc sống hằng ngày của người Việt. Bạn có thể dễ dàng thưởng thức món ăn này tại quán cóc ở một con phố nào bất kỳ. Đối với nhiều người, món ăn có phần dã man, kinh dị khi bên trong có con vịt bé xíu với một lớp lông tơ xung quanh, tuy nhiên, nó vẫn là món ăn khoái khẩu của rất nhiều người.</span>
-                                </p>
-                                <h2>
-                                    <strong style="font-size: 16px;">2. Runam Cafe</strong>
-                                </h2>
-                                <p>
-                                    <span>Runam được lòng du khách quốc tế bởi thiết kế tuyệt đẹp, với những bức tường cây xanh mát, đèn tỏa ánh sáng ấm áp. Khu ngoài trời có các ghế sofa và nhiều góc nhỏ tĩnh lặng để bạn đọc sách và nhấm nháp cà phê.</span>
-                                </p>
-                                <p>
-                                    <img alt="" src="../img/blogs-connect/blogs3.jpg">
-                                </p>
-                                <p>
-                                    <img alt="" src="../img/blogs-connect/blogs4.jpg">
-                                </p>
-                                <p>
-                                    <span>Ngoài cà phê sữa đá nổi tiếng, quán còn có nhiều loại đồ uống độc đáo, như Sand Dune (Cồn Cát) được pha từ cà phê espresso với rượu rum, wishkey và rượu đường.</span>
-                                </p>
-                                <p>
-                                    <img alt="" src="../img/blogs-connect/blogs5.jpg">
-                                </p>
-                                <p style="text-align: right;">
-                                    <strong><span style="font-size: 14px; text-align: right;">Mimi Nguyễn</span></strong>
-                                </p>
+                                {!! $post->body !!}
                             </div>
 
                             <div class="social">
@@ -404,6 +366,18 @@
                 </div>
             </div>
         </section>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            {!! Html::linkRoute('posts.edit', 'Edit', array($post->id), array('class' => 'btn btn-primary btn-block')) !!}
+        </div>
+        <div class="col-md-6">
+            {!! Form::open(['route' => ['posts.destroy', $post->id], 'method' => 'DELETE']) !!}
+
+                {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-block']) !!}
+
+            {!! Form::close() !!}
+        </div>
     </div>
 @endsection
 
