@@ -68,7 +68,7 @@ a{
 }
 
 .dark-bg{
-  background: #F7F7F7;
+  background: #f8f8f8;
 }
 
 .btn-main{
@@ -317,10 +317,17 @@ a{
 }
 
 /* section best-place */
+.grid{
+  margin: 0 auto;
+  width: 100%;
+}
 
 .card{
-  border: 1px solid #e6e6e6;
-  margin-bottom: 45px;
+  margin: 20px 10px;
+  width: 330px;
+  background: #fff;
+  border-bottom: rgba(0,0,0,.13) 1px solid;
+  box-shadow: 0 0 5px rgba(0,0,0,.1);
 }
 
 .card .img-container a{
@@ -359,21 +366,19 @@ a{
 }
 
 .card .info .description{
-  margin: 20px 0;
+  margin: 10px 0 20px 0;
   line-height: 1.4;
   width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
+  font-size: 13px;
+  line-height: 1.75;
 }
 
 .card .card-bottom{
   list-style: none;
   padding: 20px 20px;
   margin: 0;
-  border-top: 1px solid #e6e6e6;
+  border: 1px solid rgba(0, 0, 0, .035);
+  font-size: 13px;
 }
 
 .card .card-bottom li{
@@ -516,8 +521,8 @@ a{
 
 /* blogs style */
 .blogs .author img{
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   border-radius: 100%;
 }
 
@@ -531,15 +536,8 @@ a{
 
 .blogs .card .card-bottom{
   padding: 10px 20px;
-}
-
-.blogs .card .info .description{
-  width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
+  font-size: 13px;
+  background: #FCFCFC;
 }
 
 /* contact style */
