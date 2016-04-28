@@ -7,11 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     protected $fillable = [
-        'title', 'body', 'user_id',
+        'title', 'summary', 'body', 'user_id',
     ];
 
-    public function post()
+    public function user()
     {
         return $this->belongsTo('App\User');
+    }
+
+    public function comments()
+    {
+        return $this->morphMany('App\Comment', 'commentable');
     }
 }
