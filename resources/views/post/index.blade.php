@@ -19,295 +19,35 @@
             <div class="container">
                 <div class="container">
                     <div class="row align-left">
-                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                            <div class="card">
-                                <div class="img-container">
-                                    <a href="blog-detail.html"><img alt="" src="../img/places/dd1.jpg"></a>
-                                </div>
-                                <div class="info">
-                                    <div class="name bold"><a href="blog-detail.html">Top 10 Café Biệt Thự sân vườn đẹp nhất Sài Gòn</a></div>
-                                    <div class="description">
-                                        Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.
+                        <div class="grid">
+                            @foreach($posts as $post)
+                                <div class="card">
+                                    <div class="img-container">
+                                        <a href="{{ route('posts.show', $post->id) }}"><img alt="" src=" {{ $post->cover->url() }}"></a>
                                     </div>
-                                </div>
-                                <ul class="card-bottom">
-                                    <li>
-                                        <a href="#" class="author">
-                                            <img alt="" src="../img/blogs/author1.jpg">
-                                            <span class="bold">John Smith</span>
-                                        </a>
-                                    </li>
-                                    <li><i class="fa fa-heart fa-mg-right"></i>30</li>
-                                    <li><i class="fa fa-comments fa-mg-right"></i>52</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                            <div class="card">
-                                <div class="img-container">
-                                    <a href="blog-detail.html"><img alt="" src="../img/places/dd2.jpg"></a>
-                                </div>
-                                <div class="info">
-                                    <div class="name bold"><a href="blog-detail.html">Top 10 Café Biệt Thự sân vườn đẹp nhất Sài Gòn</a></div>
-                                    <div class="description">
-                                        Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Nulla porttitor accumsan tincidunt. Proin eget tortor risus.
+                                    <div class="info">
+                                        <div class="name bold"><a href="{{ route('posts.show', $post->id) }}">{{ $post->title }}</a></div>
+                                        <div class="description">
+                                            {{ $post->summary }}
+                                        </div>
                                     </div>
+                                    <ul class="card-bottom">
+                                        <li>
+                                            <a href="#" class="author">
+                                                <img alt="" src="../img/blogs/author1.jpg">
+                                                <span>{{ $post->user->name }}</span>
+                                            </a>
+                                        </li>
+                                        <li><i class="fa fa-heart fa-mg-right"></i>30</li>
+                                        <li><i class="fa fa-comments fa-mg-right"></i>{{ $post->comments->count() }}</li>
+                                    </ul>
                                 </div>
-                                <ul class="card-bottom">
-                                    <li>
-                                        <a href="#" class="author">
-                                            <img alt="" src="../img/blogs/author2.jpg">
-                                            <span class="bold">John Smith</span>
-                                        </a>
-                                    </li>
-                                    <li><i class="fa fa-heart fa-mg-right"></i>30</li>
-                                    <li><i class="fa fa-comments fa-mg-right"></i>52</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                            <div class="card">
-                                <div class="img-container">
-                                    <a href="blog-detail.html"><img alt="" src="../img/places/dd3.jpg"></a>
-                                </div>
-                                <div class="info">
-                                    <div class="name bold"><a href="blog-detail.html">Top 10 Café Biệt Thự sân vườn đẹp nhất Sài Gòn</a></div>
-                                    <div class="description">
-                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.
-                                    </div>
-                                </div>
-                                <ul class="card-bottom">
-                                    <li>
-                                        <a href="#" class="author">
-                                            <img alt="" src="../img/blogs/author3.jpg">
-                                            <span class="bold">John Smith</span>
-                                        </a>
-                                    </li>
-                                    <li><i class="fa fa-heart fa-mg-right"></i>30</li>
-                                    <li><i class="fa fa-comments fa-mg-right"></i>52</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                            <div class="card">
-                                <div class="img-container">
-                                    <a href="blog-detail.html"><img alt="" src="../img/places/dd1.jpg"></a>
-                                </div>
-                                <div class="info">
-                                    <div class="name bold"><a href="blog-detail.html">Top 10 Café Biệt Thự sân vườn đẹp nhất Sài Gòn</a></div>
-                                    <div class="description">
-                                        Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.
-                                    </div>
-                                </div>
-                                <ul class="card-bottom">
-                                    <li>
-                                        <a href="#" class="author">
-                                            <img alt="" src="../img/blogs/author3.jpg">
-                                            <span class="bold">John Smith</span>
-                                        </a>
-                                    </li>
-                                    <li><i class="fa fa-heart fa-mg-right"></i>30</li>
-                                    <li><i class="fa fa-comments fa-mg-right"></i>52</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                            <div class="card">
-                                <div class="img-container">
-                                    <a href="blog-detail.html"><img alt="" src="../img/places/dd2.jpg"></a>
-                                </div>
-                                <div class="info">
-                                    <div class="name bold"><a href="blog-detail.html">Top 10 Café Biệt Thự sân vườn đẹp nhất Sài Gòn</a></div>
-                                    <div class="description">
-                                        Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Nulla porttitor accumsan tincidunt. Proin eget tortor risus.
-                                    </div>
-                                </div>
-                                <ul class="card-bottom">
-                                    <li>
-                                        <a href="#" class="author">
-                                            <img alt="" src="../img/blogs/author2.jpg">
-                                            <span class="bold">John Smith</span>
-                                        </a>
-                                    </li>
-                                    <li><i class="fa fa-heart fa-mg-right"></i>30</li>
-                                    <li><i class="fa fa-comments fa-mg-right"></i>52</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                            <div class="card">
-                                <div class="img-container">
-                                    <a href="blog-detail.html"><img alt="" src="../img/places/dd3.jpg"></a>
-                                </div>
-                                <div class="info">
-                                    <div class="name bold"><a href="blog-detail.html">Top 10 Café Biệt Thự sân vườn đẹp nhất Sài Gòn</a></div>
-                                    <div class="description">
-                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.
-                                    </div>
-                                </div>
-                                <ul class="card-bottom">
-                                    <li>
-                                        <a href="#" class="author">
-                                            <img alt="" src="../img/blogs/author1.jpg">
-                                            <span class="bold">John Smith</span>
-                                        </a>
-                                    </li>
-                                    <li><i class="fa fa-heart fa-mg-right"></i>30</li>
-                                    <li><i class="fa fa-comments fa-mg-right"></i>52</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                            <div class="card">
-                                <div class="img-container">
-                                    <a href="blog-detail.html"><img alt="" src="../img/places/dd4.jpg"></a>
-                                </div>
-                                <div class="info">
-                                    <div class="name bold"><a href="blog-detail.html">Top 10 Café Biệt Thự sân vườn đẹp nhất Sài Gòn</a></div>
-                                    <div class="description">
-                                        Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.
-                                    </div>
-                                </div>
-                                <ul class="card-bottom">
-                                    <li>
-                                        <a href="#" class="author">
-                                            <img alt="" src="../img/blogs/author1.jpg">
-                                            <span class="bold">John Smith</span>
-                                        </a>
-                                    </li>
-                                    <li><i class="fa fa-heart fa-mg-right"></i>30</li>
-                                    <li><i class="fa fa-comments fa-mg-right"></i>52</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                            <div class="card">
-                                <div class="img-container">
-                                    <a href="blog-detail.html"><img alt="" src="../img/places/dd2.jpg"></a>
-                                </div>
-                                <div class="info">
-                                    <div class="name bold"><a href="blog-detail.html">Top 10 Café Biệt Thự sân vườn đẹp nhất Sài Gòn</a></div>
-                                    <div class="description">
-                                        Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Nulla porttitor accumsan tincidunt. Proin eget tortor risus.
-                                    </div>
-                                </div>
-                                <ul class="card-bottom">
-                                    <li>
-                                        <a href="#" class="author">
-                                            <img alt="" src="../img/blogs/author2.jpg">
-                                            <span class="bold">John Smith</span>
-                                        </a>
-                                    </li>
-                                    <li><i class="fa fa-heart fa-mg-right"></i>30</li>
-                                    <li><i class="fa fa-comments fa-mg-right"></i>52</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                            <div class="card">
-                                <div class="img-container">
-                                    <a href="blog-detail.html"><img alt="" src="../img/places/dd3.jpg"></a>
-                                </div>
-                                <div class="info">
-                                    <div class="name bold"><a href="blog-detail.html">Top 10 Café Biệt Thự sân vườn đẹp nhất Sài Gòn</a></div>
-                                    <div class="description">
-                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.
-                                    </div>
-                                </div>
-                                <ul class="card-bottom">
-                                    <li>
-                                        <a href="#" class="author">
-                                            <img alt="" src="../img/blogs/author3.jpg">
-                                            <span class="bold">John Smith</span>
-                                        </a>
-                                    </li>
-                                    <li><i class="fa fa-heart fa-mg-right"></i>30</li>
-                                    <li><i class="fa fa-comments fa-mg-right"></i>52</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                            <div class="card">
-                                <div class="img-container">
-                                    <a href="blog-detail.html"><img alt="" src="../img/places/dd1.jpg"></a>
-                                </div>
-                                <div class="info">
-                                    <div class="name bold"><a href="blog-detail.html">Top 10 Café Biệt Thự sân vườn đẹp nhất Sài Gòn</a></div>
-                                    <div class="description">
-                                        Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.
-                                    </div>
-                                </div>
-                                <ul class="card-bottom">
-                                    <li>
-                                        <a href="#" class="author">
-                                            <img alt="" src="../img/blogs/author3.jpg">
-                                            <span class="bold">John Smith</span>
-                                        </a>
-                                    </li>
-                                    <li><i class="fa fa-heart fa-mg-right"></i>30</li>
-                                    <li><i class="fa fa-comments fa-mg-right"></i>52</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                            <div class="card">
-                                <div class="img-container">
-                                    <a href="blog-detail.html"><img alt="" src="../img/places/dd2.jpg"></a>
-                                </div>
-                                <div class="info">
-                                    <div class="name bold"><a href="blog-detail.html">Top 10 Café Biệt Thự sân vườn đẹp nhất Sài Gòn</a></div>
-                                    <div class="description">
-                                        Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Nulla porttitor accumsan tincidunt. Proin eget tortor risus.
-                                    </div>
-                                </div>
-                                <ul class="card-bottom">
-                                    <li>
-                                        <a href="#" class="author">
-                                            <img alt="" src="../img/blogs/author2.jpg">
-                                            <span class="bold">John Smith</span>
-                                        </a>
-                                    </li>
-                                    <li><i class="fa fa-heart fa-mg-right"></i>30</li>
-                                    <li><i class="fa fa-comments fa-mg-right"></i>52</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                            <div class="card">
-                                <div class="img-container">
-                                    <a href="blog-detail.html"><img alt="" src="../img/places/dd3.jpg"></a>
-                                </div>
-                                <div class="info">
-                                    <div class="name bold"><a href="blog-detail.html">Top 10 Café Biệt Thự sân vườn đẹp nhất Sài Gòn</a></div>
-                                    <div class="description">
-                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.
-                                    </div>
-                                </div>
-                                <ul class="card-bottom">
-                                    <li>
-                                        <a href="#" class="author">
-                                            <img alt="" src="../img/blogs/author1.jpg">
-                                            <span class="bold">John Smith</span>
-                                        </a>
-                                    </li>
-                                    <li><i class="fa fa-heart fa-mg-right"></i>30</li>
-                                    <li><i class="fa fa-comments fa-mg-right"></i>52</li>
-                                </ul>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
-                    <a href="#" class="btn btn-main">XEM THÊM...</a>
+                    <div class="paginate">
+                        {!! $posts->links() !!}
+                    </div>
                 </div>
             </div>
         </section>
@@ -315,4 +55,11 @@
 @endsection
 
 @section('script')
+    <script src="https://npmcdn.com/masonry-layout@4.0/dist/masonry.pkgd.min.js"></script>
+    <script>
+        $('.grid').masonry({
+            itemSelector: '.card',
+            isFitWidth: true
+        });
+    </script>
 @endsection
