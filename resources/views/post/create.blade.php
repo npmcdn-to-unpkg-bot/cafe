@@ -12,18 +12,28 @@
             {{ Form::text('title', null, array('class' => 'form-control', 'required' => '', 'maxlength' => '255')) }}
             @if ($errors->has('title'))
                 <span class="help-block">
-                        <strong>{{ $errors->first('title') }}</strong>
-                    </span>
+                    <strong>{{ $errors->first('title') }}</strong>
+                </span>
             @endif
         </div>
 
         <div class="form-group">
-            {{ Form::label('body', "Post body:") }}
+            {{ Form::label('summary', "Summary:") }}
+            {{ Form::textarea('summary', null, array('class' => 'form-control', 'required' => '', 'maxlength' => '255')) }}
+            @if ($errors->has('summary'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('summary') }}</strong>
+                </span>
+            @endif
+        </div>
+
+        <div class="form-group">
+            {{ Form::label('body', "Body:") }}
             {{ Form::textarea('body', null, array('class' => 'form-control', 'required' => '')) }}
             @if ($errors->has('body'))
                 <span class="help-block">
-                        <strong>{{ $errors->first('body') }}</strong>
-                    </span>
+                    <strong>{{ $errors->first('body') }}</strong>
+                </span>
             @endif
         </div>
 

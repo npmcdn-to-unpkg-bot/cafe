@@ -22,13 +22,16 @@
                                 </a>
                             </div>
                             <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
-                                <a href="#" class="author_name">{{ $user->name }}</a>
+                                <a href="#" class="author_name">{{ $post->user->name }}</a>
                                 <p>Created at: {{ date('M j, Y h:ia', strtotime($post->created_at)) }}</p>
                             </div>
                         </div>
                         <h1 class="blog-title">{{ $post->title }}</h1>
                         <div class="content">
                             <div class="content-main">
+                                <p class="summary">
+                                    {{ $post->summary }}
+                                </p>
                                 {!! $post->body !!}
                             </div>
 
@@ -42,48 +45,34 @@
                                     <li><a href="#"><i class="fa fa-twitter"></i></a></li>
                                     <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
                                 </ul>
-                                <input type="text" id="comment" placeholder="Viết Bình Luận...">
                                 <div class="comment">
-                                    <div class="wrapper">
-                                        <div class="avatar-comment">
-                                            <a href="#"><img alt="" src="../img/comments/commenter10.jpg"></a>
-                                        </div>
-                                        <div class="cmt-wrapper">
-                                            <div class="name">
-                                                <h5 class="bold"><a href="#">Yoona</a></h5>
-                                            </div>
-                                            <div class="cmt-content">
-                                                <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</span>
-                                            </div>
-                                        </div>
+                                    <div class="comment-input">
+                                        {!! Form::open(array('route' => array('posts.storeComment', $post->id))) !!}
+                                            {{ Form::text('body', null, array('id' => 'comment', 'placeholder' => 'Write your comment....')) }}
+                                        {!! Form::close() !!}
                                     </div>
-
-                                    <div class="wrapper">
-                                        <div class="avatar-comment">
-                                            <a href="#"><img alt="" src="../img/comments/commenter11.jpg"></a>
-                                        </div>
-                                        <div class="cmt-wrapper">
-                                            <div class="name">
-                                                <h5 class="bold"><a href="#">Park So-yeon</a></h5>
+                                    <div class="available-comments">
+                                        @foreach($post->comments->reverse() as $comment)
+                                            <div class="wrapper">
+                                                <div class="avatar-comment">
+                                                    <a href="#"><img alt="" src="../img/comments/commenter10.jpg"></a>
+                                                </div>
+                                                <div class="cmt-wrapper">
+                                                    <div class="name">
+                                                        <h5 class="bold"><a href="#">{{ $comment->user->name }}</a></h5>
+                                                    </div>
+                                                    <div class="cmt-content">
+                                                        <span>{{ $comment->body }}</span>
+                                                    </div>
+                                                    {{--{{ link_to_route('posts.destroyComments', 'Delete', array($post->id, $comment->id), array('id' => "destroy-comment-".$comment->id, 'class' => 'comment-destroy', 'method' => 'DELETE')) }}--}}
+                                                    @if ($comment->user_id == Auth::user()->id)
+                                                        {!! Form::open(array('route' => ['posts.destroyComments', $post->id, $comment->id], 'method' => 'DELETE')) !!}
+                                                            {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-block']) !!}
+                                                        {!! Form::close() !!}
+                                                    @endif
+                                                </div>
                                             </div>
-                                            <div class="cmt-content">
-                                                <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="wrapper">
-                                        <div class="avatar-comment">
-                                            <a href="#"><img alt="" src="../img/comments/commenter12.jpg"></a>
-                                        </div>
-                                        <div class="cmt-wrapper">
-                                            <div class="name">
-                                                <h5 class="bold"><a href="#">Hyomin</a></h5>
-                                            </div>
-                                            <div class="cmt-content">
-                                                <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</span>
-                                            </div>
-                                        </div>
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>
