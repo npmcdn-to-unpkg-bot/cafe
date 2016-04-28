@@ -109,7 +109,7 @@
 }
 
 /*comment-box*/
-#comment{
+#comment-body{
 	display: inline-block;
 	float: left;
 	height: 40px;
@@ -144,6 +144,7 @@
   float: left;
   width: 90%;
   padding: 0 5px;
+  position: relative;
 }
 
 .cmt-wrapper .name{
@@ -362,4 +363,31 @@
   .col-xs-11{
     padding: 0 20px;
   }
+}
+
+.comment-destroy{
+  display: none;
+  width: 22px;
+  height: 22px;
+  background: #0a0a0a;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  text-align: center;
+  transition: all ease .3s;
+}
+
+.wrapper:hover .comment-destroy{
+  display: block;
+}
+
+.comment-destroy:hover{
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.16),0 4px 10px 0 rgba(0,0,0,0.12);
+}
+
+.comment-destroy i{
+  margin-top: 3.5px;
+  color: #fff !important;
+  font-size: 12px;
 }

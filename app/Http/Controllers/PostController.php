@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use Auth;
+use Session;
 use App\Post;
 use App\Comment;
-use Session;
 
 class PostController extends Controller
 {
@@ -87,23 +87,63 @@ class PostController extends Controller
 
     public function storeComment(Request $request, $postId)
     {
-        $post = Post::find($postId);
-        $comment = new Comment(array(
-            'body' => $request->body,
-            'user_id' => Auth::user()->id
-        ));
+        if($request->ajax()){
+            // save comment to post
+            $post = Post::find($postId);
+            $comment = new Comment(array(
+                'body' => $request->body,
+                'user_id' => Auth::user()->id
+            ));
+            $post->comments()->save($comment);
 
-        $post->comments()->save($comment);
-        return redirect()->route('posts.show', $postId);
+            // get comments response data
+            $commets_response = [];
+            foreach($post->comments->reverse() as $comment){
+                array_push($commets_response, array(
+                    'post_id' => $post->id,
+                    'id' => $comment->id,
+                    'body' => $comment->body,
+                    'user_id' => $comment->user->id,
+                    'username' => $comment->user->name,
+                    'created_at' => $comment->created_at
+                ));
+            }
+
+            // return json response
+            return response()->json([
+                'comments' => $commets_response,
+                'current_user_id' => Auth::user()->id
+            ]);
+        }
     }
 
-    public function destroyComment($postId, $commentId)
+    public function destroyComment(Request $request, $postId, $commentId)
     {
-        $comment =  Post::find($postId)->comments->find($commentId);
-        if ($comment->user_id == Auth::user()->id){
-            $comment->delete();
-            Session::flash('success', 'Comment was successfully deleted.');
-            return redirect()->route('posts.show', $postId);
+        if($request->ajax()){
+            $comment = Post::find($postId)->comments->find($commentId);
+            if ($comment->user_id == Auth::user()->id){
+                $comment->delete();
+
+                // get comments response data
+                $commets_response = [];
+                $post = Post::find($postId);
+                foreach($post->comments->reverse() as $comment){
+                    array_push($commets_response, array(
+                        'post_id' => $post->id,
+                        'id' => $comment->id,
+                        'body' => $comment->body,
+                        'user_id' => $comment->user->id,
+                        'username' => $comment->user->name,
+                        'created_at' => $comment->created_at
+                    ));
+                }
+
+                // return json response
+                return response()->json([
+                    'comments' => $commets_response,
+                    'current_user_id' => Auth::user()->id
+                ]);
+            }
         }
     }
 }
