@@ -1,36 +1,52 @@
-@extends('layouts.admin')
+@extends('layouts.app')
 
 @section('style')
+    {!! Html::style('css/index.css') !!}
+    {!! Html::style('css/blog.css') !!}
     {!! Html::style('css/parsley.css') !!}
 @endsection
 
 @section('content')
-    <h1>Edit post</h1>
-    {!! Form::model($post, ['route' => ['posts.update', $post->id], 'method' => 'PUT', 'data-parsley-validate' => '']) !!}
-        <div class="form-group">
-            {{ Form::label('title', 'Title:') }}
-            {{ Form::text('title', null, array('class' => 'form-control', 'required' => '', 'maxlength' => '255')) }}
-            @if ($errors->has('title'))
-                <span class="help-block">
+    <div id="content">
+        <section class="section blogs blogs-wrapper">
+            <h1>Edit post</h1>
+            {!! Form::model($post, ['route' => ['posts.update', $post->id], 'method' => 'PUT', 'data-parsley-validate' => '']) !!}
+            <div class="form-group">
+                {{ Form::label('title', 'Title:') }}
+                {{ Form::text('title', null, array('class' => 'form-control', 'required' => '', 'maxlength' => '255')) }}
+                @if ($errors->has('title'))
+                    <span class="help-block">
                     <strong>{{ $errors->first('title') }}</strong>
                 </span>
-            @endif
-        </div>
+                @endif
+            </div>
 
-        <div class="form-group">
-            {{ Form::label('body', "Post body:") }}
-            {{ Form::textarea('body', null, array('class' => 'form-control', 'required' => '')) }}
-            @if ($errors->has('body'))
-                <span class="help-block">
+            <div class="form-group">
+                {{ Form::label('summary', "Summary:") }}
+                {{ Form::textarea('summary', null, array('class' => 'form-control', 'required' => '', 'maxlength' => '255')) }}
+                @if ($errors->has('summary'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('summary') }}</strong>
+                    </span>
+                @endif
+            </div>
+
+            <div class="form-group">
+                {{ Form::label('body', "Post body:") }}
+                {{ Form::textarea('body', null, array('class' => 'form-control', 'required' => '')) }}
+                @if ($errors->has('body'))
+                    <span class="help-block">
                     <strong>{{ $errors->first('body') }}</strong>
                 </span>
-            @endif
-        </div>
+                @endif
+            </div>
 
-        <div class="form-action">
-            {{ Form::submit('Update Post', array('class' => 'btn btn-success btn-lg btn-block')) }}
-        </div>
-    {!! Form::close() !!}
+            <div class="form-action">
+                {{ Form::submit('Update Post', array('class' => 'btn btn-success btn-lg btn-block')) }}
+            </div>
+            {!! Form::close() !!}
+        </section>
+    </div>
 @endsection
 
 @section('script')

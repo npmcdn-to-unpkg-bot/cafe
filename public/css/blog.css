@@ -110,8 +110,7 @@
 
 /*comment-box*/
 #comment-body{
-	display: inline-block;
-	float: left;
+	display: block;
 	height: 40px;
 	width: 100%;
 	border: 1px solid #eee;

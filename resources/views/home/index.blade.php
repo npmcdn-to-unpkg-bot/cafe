@@ -580,7 +580,5 @@
             var h = videoHeight <= innerHeight? videoHeight : innerHeight;
             $('.header, .dotted-overlay').css("height", h);
         }
-
-        $('#header-video').get(0).play();
     </script>
 @endsection
