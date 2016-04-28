@@ -30,12 +30,14 @@ class PostController extends Controller
     {
         $this->validate($request, array(
             'title' => 'required|max:255',
+            'cover'  => 'required',
             'summary' => 'required|max:255',
             'body'  => 'required'
         ));
 
         $post = new Post(array(
             'title' => $request->title,
+            'cover' => $request->cover,
             'summary' => $request->summary,
             'body' => $request->body
         ));
@@ -68,6 +70,7 @@ class PostController extends Controller
         $post = Post::find($id);
         $post->update([
             'title' => $request->title,
+            'cover' => $request->cover,
             'summary' => $request->summary,
             'body' => $request->body
         ]);

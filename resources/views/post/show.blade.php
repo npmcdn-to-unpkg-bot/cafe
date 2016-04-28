@@ -26,6 +26,9 @@
                                 <p>{{ date('M j, Y h:ia', strtotime($post->created_at)) }}</p>
                             </div>
                         </div>
+                        <div class="image-cover">
+                            <img src="{{ $post->cover->url() }}" >
+                        </div>
                         <h1 class="blog-title">{{ $post->title }}</h1>
                         <div class="content">
                             <div class="content-main">

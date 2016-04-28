@@ -10,7 +10,7 @@
     <div id="content">
         <section class="section blogs blogs-wrapper">
             <h1>Create new post.</h1>
-            <form action="{{ route('posts.store') }}" method="POST" data-parsley-validate>
+            <form action="{{ route('posts.store') }}" method="POST" accept-charset="UTF-8" enctype="multipart/form-data" data-parsley-validate>
                 {!! csrf_field() !!}
 
                 <div class="form-group">
@@ -20,6 +20,16 @@
                         <span class="help-block">
                         <strong>{{ $errors->first('title') }}</strong>
                     </span>
+                    @endif
+                </div>
+
+                <div class="form-group">
+                    <label for="cover">Cover Image:</label>
+                    <input type="file" name="cover" id="cover" class="form-control" required>
+                    @if ($errors->has('cover'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('cover') }}</strong>
+                        </span>
                     @endif
                 </div>
 
