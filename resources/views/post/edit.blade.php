@@ -10,7 +10,7 @@
     <div id="content">
         <section class="section blogs blogs-wrapper">
             <h1>Edit post</h1>
-            {!! Form::model($post, ['route' => ['posts.update', $post->id], 'method' => 'PUT', 'data-parsley-validate' => '']) !!}
+            {!! Form::model($post, ['route' => ['posts.update', $post->id], 'method' => 'PUT', 'files' => true, 'data-parsley-validate' => '']) !!}
             <div class="form-group">
                 {{ Form::label('title', 'Title:') }}
                 {{ Form::text('title', null, array('class' => 'form-control', 'required' => '', 'maxlength' => '255')) }}
@@ -18,6 +18,16 @@
                     <span class="help-block">
                     <strong>{{ $errors->first('title') }}</strong>
                 </span>
+                @endif
+            </div>
+
+            <div class="form-group">
+                {{ Form::label('cover', 'Image Cover:') }}
+                {{ Form::file('cover', array('class' => 'form-control')) }}
+                @if ($errors->has('cover'))
+                    <span class="help-block">
+                            <strong>{{ $errors->first('cover') }}</strong>
+                        </span>
                 @endif
             </div>
 

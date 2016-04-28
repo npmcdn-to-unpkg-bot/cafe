@@ -10,7 +10,8 @@
         "laravelcollective/html": "5.2.*",
         "unisharp/laravel-ckeditor": "^4.5",
         "intervention/image": "^2.3",
-        "tsawler/laravel-filemanager": "^0.6.1"
+        "tsawler/laravel-filemanager": "^0.6.1",
+        "codesleeve/laravel-stapler": "1.0.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

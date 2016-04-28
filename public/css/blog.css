@@ -390,3 +390,8 @@
   color: #fff !important;
   font-size: 12px;
 }
+
+.image-cover img{
+  width: 100% !important;
+  max-height: 300px;
+}
