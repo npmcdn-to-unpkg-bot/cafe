@@ -11,7 +11,7 @@
 
 @section('content')
     <div id="content">
-        <section class="section align-center blogs blogs-wrapper" id="blogs">
+        <section class="section align-center blogs blogs-wrapper">
             <h2 class="s-title bold upper-text">Blogs</h2>
             <p class="s-intro">
                 It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.
@@ -33,7 +33,7 @@
                                     </div>
                                     <ul class="card-bottom">
                                         <li>
-                                            <a href="#" class="author">
+                                            <a href="{{ route('profile.show', $post->user->id) }}" class="author">
                                                 <img alt="" src="../img/blogs/author1.jpg">
                                                 <span>{{ $post->user->name }}</span>
                                             </a>

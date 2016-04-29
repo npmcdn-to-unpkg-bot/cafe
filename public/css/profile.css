@@ -1,0 +1,69 @@
+.profile{
+    position: relative;
+    background: url("../img/profile_heade.png") center;
+    padding: 40px 0;
+    color: #fff;
+}
+
+.profile .avatar{
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    border: 3px solid #fff;
+}
+
+.profile .stats{
+    margin-right: 10%;
+}
+
+.profile .stats .number{
+    font-size: 25px;
+}
+
+.profile .social-links{
+    list-style: none;
+    position: absolute;
+    right: 5%;
+    bottom: 50px;
+}
+
+.profile .social-links li{
+    display: inline-block;
+    margin: 0 5px;
+}
+
+.profile .social-links li a{
+    width: 34px;
+    height: 34px;
+    display: block;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 50%;
+    transition: all ease .3s;
+    background: rgba(255, 255, 255, .2);
+}
+
+.profile .social-links li a:hover{
+    color: #262626;
+    background: #fff;
+    box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.16), 0 4px 10px 0 rgba(255, 255, 255, 0.12);
+}
+
+.profile .social-links li a i{
+    padding: 8px 0;
+}
+
+.user-posts{
+    margin-top: 20px;
+}
+
+.no-post h2{
+    font-size: 18px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.no-post .dinosaur-troll{
+    display: block;
+    margin: 0 auto;
+}

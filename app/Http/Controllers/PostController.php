@@ -57,36 +57,55 @@ class PostController extends Controller
     public function edit($id)
     {
         $post = Post::find($id);
-        return view('post.edit')->withPost($post);
+        if(Auth::user()->id == $post->user->id) {
+            return view('post.edit')->withPost($post);
+        }
+        else{
+            Session::flash('error', 'This post not belong to you!');
+            return redirect()->route('posts.show', $id);
+        }
     }
 
     public function update(Request $request, $id)
     {
-        $this->validate($request, array(
-            'title' => 'required|max:255',
-            'summary' => 'required|max:255',
-            'body'  => 'required'
-        ));
-
         $post = Post::find($id);
-        $post->update([
-            'title' => $request->title,
-            'cover' => $request->cover,
-            'summary' => $request->summary,
-            'body' => $request->body
-        ]);
 
-        Session::flash('success', 'This post was successfully updated.');
-        return redirect()->route('posts.show', $post->id);
+        if(Auth::user()->id == $post->user->id) {
+            $this->validate($request, array(
+                'title' => 'required|max:255',
+                'summary' => 'required|max:255',
+                'body' => 'required'
+            ));
+
+            $post->update([
+                'title' => $request->title,
+                'cover' => $request->cover,
+                'summary' => $request->summary,
+                'body' => $request->body
+            ]);
+
+            Session::flash('success', 'This post was successfully updated.');
+            return redirect()->route('posts.show', $post->id);
+        }
+        else{
+            Session::flash('error', 'This post not belong to you!');
+            return redirect()->route('posts.show', $id);
+        }
     }
 
     public function destroy($id)
     {
         $post = Post::find($id);
-        $post->delete();
+        if(Auth::user()->id == $post->user->id){
+            $post->delete();
 
-        Session::flash('success', 'The post was successfully deleted.');
-        return redirect()->route('posts.index');
+            Session::flash('success', 'The post was successfully deleted.');
+            return redirect()->route('posts.index');
+        }
+        else{
+            Session::flash('error', 'This post not belong to you!');
+            return redirect()->route('posts.show', $id);
+        }
     }
 
     public function storeComment(Request $request, $postId)

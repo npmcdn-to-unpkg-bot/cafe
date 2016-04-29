@@ -17,12 +17,12 @@
                     <div class="blog-detail-content">
                         <div class="owners">
                             <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
-                                <a href="#" class="author_avatar">
+                                <a href="{{ route('profile.show', $post->user->id) }}" class="author_avatar">
                                     <img alt="" src="../img/blogs/author2.jpg">
                                 </a>
                             </div>
                             <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
-                                <a href="#" class="author_name">{{ $post->user->name }}</a>
+                                <a href="{{ route('profile.show', $post->user->id) }}" class="author_name">{{ $post->user->name }}</a>
                                 <p>{{ date('M j, Y h:ia', strtotime($post->created_at)) }}</p>
                             </div>
                         </div>
@@ -58,11 +58,11 @@
                                         @foreach($post->comments->reverse() as $comment)
                                             <div class="wrapper">
                                                 <div class="avatar-comment">
-                                                    <a href="#"><img alt="" src="../img/comments/commenter10.jpg"></a>
+                                                    <a href="{{ route('profile.show', $comment->user->id) }}"><img alt="" src="../img/comments/commenter10.jpg"></a>
                                                 </div>
                                                 <div class="cmt-wrapper">
                                                     <div class="name">
-                                                        <h5 class="bold"><a href="#">{{ $comment->user->name }}</a></h5>
+                                                        <h5 class="bold"><a href="{{ route('profile.show', $comment->user->id) }}">{{ $comment->user->name }}</a></h5>
                                                     </div>
                                                     <div class="cmt-content">
                                                         <span>{{ $comment->body }}</span>
@@ -267,18 +267,20 @@
             </div>
         </section>
     </div>
-    <div class="row">
-        <div class="col-md-6">
-            {!! Html::linkRoute('posts.edit', 'Edit', array($post->id), array('class' => 'btn btn-primary btn-block')) !!}
-        </div>
-        <div class="col-md-6">
-            {!! Form::open(['route' => ['posts.destroy', $post->id], 'method' => 'DELETE']) !!}
+    @if (Auth::user() && (Auth::user()->id == $post->user->id))
+        <div class="row post-actions">
+            <div class="col-md-6">
+                {!! Html::linkRoute('posts.edit', 'Edit', array($post->id), array('class' => 'btn btn-primary btn-block')) !!}
+            </div>
+            <div class="col-md-6">
+                {!! Form::open(['route' => ['posts.destroy', $post->id], 'method' => 'DELETE']) !!}
 
-                {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-block']) !!}
+                    {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-block']) !!}
 
-            {!! Form::close() !!}
+                {!! Form::close() !!}
+            </div>
         </div>
-    </div>
+    @endif
 @endsection
 
 @section('script')
@@ -301,11 +303,11 @@
                     data.comments.forEach(function (comment) {
                         htmlCode += '<div class="wrapper">';
                         htmlCode += '<div class="avatar-comment">';
-                        htmlCode += '<a href="#"><img alt="" src="../img/comments/commenter10.jpg"></a>';
+                        htmlCode += '<a href="{{ url('profile') }}' + '/' + comment.user_id + '"><img alt="" src="../img/comments/commenter10.jpg"></a>';
                         htmlCode += '</div>';
                         htmlCode += '<div class="cmt-wrapper">';
                         htmlCode += '<div class="name">';
-                        htmlCode += '<h5 class="bold"><a href="#">' + comment.username + '</a></h5>';
+                        htmlCode += '<h5 class="bold"><a href="{{ url('profile') }}' + '/' + comment.user_id + '">' + comment.username + '</a></h5>';
                         htmlCode += '</div>';
                         htmlCode += '<div class="cmt-content">';
                         htmlCode += '<span>' + comment.body + '</span>';
@@ -346,11 +348,11 @@
                     data.comments.forEach(function (comment) {
                         htmlCode += '<div class="wrapper">';
                         htmlCode += '<div class="avatar-comment">';
-                        htmlCode += '<a href="#"><img alt="" src="../img/comments/commenter10.jpg"></a>';
+                        htmlCode += '<a href="{{ url('profile') }}' + '/' + comment.user_id + '"><img alt="" src="../img/comments/commenter10.jpg"></a>';
                         htmlCode += '</div>';
                         htmlCode += '<div class="cmt-wrapper">';
                         htmlCode += '<div class="name">';
-                        htmlCode += '<h5 class="bold"><a href="#">' + comment.username + '</a></h5>';
+                        htmlCode += '<h5 class="bold"><a href="{{ url('profile') }}' + '/' + comment.user_id + '">' + comment.username + '</a></h5>';
                         htmlCode += '</div>';
                         htmlCode += '<div class="cmt-content">';
                         htmlCode += '<span>' + comment.body + '</span>';
