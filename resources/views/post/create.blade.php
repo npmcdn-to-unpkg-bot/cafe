@@ -15,7 +15,7 @@
 
                 <div class="form-group">
                     <label for="title">Title:</label>
-                    <input type="text" name="title" id="title" class="form-control" required maxlength="255">
+                    <input type="text" name="title" id="title" class="form-control" required maxlength="255" value="{{ old('title') }}">
                     @if ($errors->has('title'))
                         <span class="help-block">
                         <strong>{{ $errors->first('title') }}</strong>
@@ -25,7 +25,7 @@
 
                 <div class="form-group">
                     <label for="cover">Cover Image:</label>
-                    <input type="file" name="cover" id="cover" class="form-control" required>
+                    <input type="file" name="cover" id="cover" class="form-control" required >
                     @if ($errors->has('cover'))
                         <span class="help-block">
                             <strong>{{ $errors->first('cover') }}</strong>
@@ -35,7 +35,7 @@
 
                 <div class="form-group">
                     <label for="summary">Summary:</label>
-                    <textarea name="summary" id="summary" cols="50" rows="5" class="form-control" required maxlength="255"></textarea>
+                    <textarea name="summary" id="summary" cols="50" rows="5" class="form-control" required maxlength="255">{{ old('summary') }}</textarea>
                     @if ($errors->has('summary'))
                         <span class="help-block">
                         <strong>{{ $errors->first('summary') }}</strong>
@@ -45,7 +45,7 @@
 
                 <div class="form-group">
                     <label for="body">Body:</label>
-                    <textarea name="body" id="body" class="form-control" required></textarea>
+                    <textarea name="body" id="body" class="form-control" required>{{ old('body') }}</textarea>
                     @if ($errors->has('body'))
                         <span class="help-block">
                         <strong>{{ $errors->first('body') }}</strong>

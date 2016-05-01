@@ -18,7 +18,7 @@ Route::post('posts/{post}/comments', ['uses' => 'PostController@storeComment', '
 Route::delete('posts/{post}/comments/{comment}', ['uses' => 'PostController@destroyComment', 'as' => 'posts.destroyComments']);
 
 // Profile routes
-Route::resource('profile', 'ProfileController',  ['only' => ['show', 'edit']]);
+Route::resource('profile', 'ProfileController',  ['only' => ['show', 'edit', 'update']]);
 
 // Admin scope routes
 Route::group(['prefix' => 'admin'], function()

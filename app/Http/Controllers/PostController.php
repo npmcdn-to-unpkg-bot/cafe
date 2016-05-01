@@ -128,6 +128,7 @@ class PostController extends Controller
                     'body' => $comment->body,
                     'user_id' => $comment->user->id,
                     'username' => $comment->user->name,
+                    'user_avatar_url' => $comment->user->avatar->url('thumb'),
                     'created_at' => $comment->created_at
                 ));
             }
@@ -157,6 +158,7 @@ class PostController extends Controller
                         'body' => $comment->body,
                         'user_id' => $comment->user->id,
                         'username' => $comment->user->name,
+                        'user_avatar_url' => $comment->user->avatar->url('thumb'),
                         'created_at' => $comment->created_at
                     ));
                 }

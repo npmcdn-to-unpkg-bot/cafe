@@ -18,7 +18,7 @@
                         <div class="owners">
                             <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
                                 <a href="{{ route('profile.show', $post->user->id) }}" class="author_avatar">
-                                    <img alt="" src="../img/blogs/author2.jpg">
+                                    <img alt="" src="{{ $post->user->avatar->url('thumb') }}">
                                 </a>
                             </div>
                             <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
@@ -58,7 +58,7 @@
                                         @foreach($post->comments->reverse() as $comment)
                                             <div class="wrapper">
                                                 <div class="avatar-comment">
-                                                    <a href="{{ route('profile.show', $comment->user->id) }}"><img alt="" src="../img/comments/commenter10.jpg"></a>
+                                                    <a href="{{ route('profile.show', $comment->user->id) }}"><img alt="" src="{{ $comment->user->avatar->url('thumb') }}"></a>
                                                 </div>
                                                 <div class="cmt-wrapper">
                                                     <div class="name">
@@ -303,7 +303,7 @@
                     data.comments.forEach(function (comment) {
                         htmlCode += '<div class="wrapper">';
                         htmlCode += '<div class="avatar-comment">';
-                        htmlCode += '<a href="{{ url('profile') }}' + '/' + comment.user_id + '"><img alt="" src="../img/comments/commenter10.jpg"></a>';
+                        htmlCode += '<a href="{{ url('profile') }}' + '/' + comment.user_id + '"><img alt="" src="' + comment.user_avatar_url + '"></a>';
                         htmlCode += '</div>';
                         htmlCode += '<div class="cmt-wrapper">';
                         htmlCode += '<div class="name">';
@@ -348,7 +348,7 @@
                     data.comments.forEach(function (comment) {
                         htmlCode += '<div class="wrapper">';
                         htmlCode += '<div class="avatar-comment">';
-                        htmlCode += '<a href="{{ url('profile') }}' + '/' + comment.user_id + '"><img alt="" src="../img/comments/commenter10.jpg"></a>';
+                        htmlCode += '<a href="{{ url('profile') }}' + '/' + comment.user_id + '"><img alt="" src="' + comment.user_avatar_url + '"></a>';
                         htmlCode += '</div>';
                         htmlCode += '<div class="cmt-wrapper">';
                         htmlCode += '<div class="name">';

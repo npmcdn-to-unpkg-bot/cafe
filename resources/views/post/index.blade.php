@@ -17,37 +17,33 @@
                 It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.
             </p>
             <div class="container">
-                <div class="container">
-                    <div class="row align-left">
-                        <div class="grid">
-                            @foreach($posts as $post)
-                                <div class="card">
-                                    <div class="img-container">
-                                        <a href="{{ route('posts.show', $post->id) }}"><img alt="" src=" {{ $post->cover->url() }}"></a>
-                                    </div>
-                                    <div class="info">
-                                        <div class="name bold"><a href="{{ route('posts.show', $post->id) }}">{{ $post->title }}</a></div>
-                                        <div class="description">
-                                            {{ $post->summary }}
-                                        </div>
-                                    </div>
-                                    <ul class="card-bottom">
-                                        <li>
-                                            <a href="{{ route('profile.show', $post->user->id) }}" class="author">
-                                                <img alt="" src="../img/blogs/author1.jpg">
-                                                <span>{{ $post->user->name }}</span>
-                                            </a>
-                                        </li>
-                                        <li><i class="fa fa-heart fa-mg-right"></i>30</li>
-                                        <li><i class="fa fa-comments fa-mg-right"></i>{{ $post->comments->count() }}</li>
-                                    </ul>
+                <div class="grid align-left">
+                    @foreach($posts as $post)
+                        <div class="card">
+                            <div class="img-container">
+                                <a href="{{ route('posts.show', $post->id) }}"><img alt="" src=" {{ $post->cover->url() }}"></a>
+                            </div>
+                            <div class="info">
+                                <div class="name bold"><a href="{{ route('posts.show', $post->id) }}">{{ $post->title }}</a></div>
+                                <div class="description">
+                                    {{ $post->summary }}
                                 </div>
-                            @endforeach
+                            </div>
+                            <ul class="card-bottom">
+                                <li>
+                                    <a href="{{ route('profile.show', $post->user->id) }}" class="author">
+                                        <img alt="" src="../img/blogs/author1.jpg">
+                                        <span>{{ $post->user->name }}</span>
+                                    </a>
+                                </li>
+                                <li><i class="fa fa-heart fa-mg-right"></i>30</li>
+                                <li><i class="fa fa-comments fa-mg-right"></i>{{ $post->comments->count() }}</li>
+                            </ul>
                         </div>
-                    </div>
-                    <div class="paginate">
-                        {!! $posts->links() !!}
-                    </div>
+                    @endforeach
+                </div>
+                <div class="paginate">
+                    {!! $posts->links() !!}
                 </div>
             </div>
         </section>
