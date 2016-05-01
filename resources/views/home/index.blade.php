@@ -5,8 +5,8 @@
 @endsection
 
 @section('style')
-    {!! Html::style('css/owlcarousel/owl.carousel.min.css') !!}
-    {!! Html::style('css/owlcarousel/owl.theme.min.css') !!}
+    {!! Html::style('libs/owlcarousel/owl.carousel.min.css') !!}
+    {!! Html::style('libs/owlcarousel/owl.theme.min.css') !!}
     {!! Html::style('css/index.css') !!}
 @endsection
 
@@ -555,7 +555,7 @@
 @endsection
 
 @section('script')
-    {!! Html::script('js/owl.carousel.min.js') !!}
+    {!! Html::script('libs/owlcarousel/owl.carousel.min.js') !!}
     <script>
         $(".owl-carousel").owlCarousel({
             singleItem: true,

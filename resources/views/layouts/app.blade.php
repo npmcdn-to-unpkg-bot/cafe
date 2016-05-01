@@ -44,12 +44,12 @@
                     @else
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle current-user" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                <span class="normal-text name">Ben</span>
-                                <img alt="" src="{{ url('img/user.jpg') }}" class="avatar">
+                                <span class="normal-text name">{{ Auth::user()->name }}</span>
+                                <img alt="" src="{{ Auth::user()->avatar->url('thumb') }}" class="avatar">
                             </a>
                             <ul class="dropdown-menu align-right">
-                                <li><a href="#">Your profile<i class="fa fa-reddit-alien fa-mg-left"></i></a></li>
-                                <li><a href="#">Edit<i class="fa fa-pencil-square fa-mg-left"></i></a></li>
+                                <li><a href="{{ route('profile.show', Auth::user()->id) }}">Your profile<i class="fa fa-reddit-alien fa-mg-left"></i></a></li>
+                                <li><a href="{{ route('profile.edit', Auth::user()->id) }}">Edit profile<i class="fa fa-pencil-square fa-mg-left"></i></a></li>
                                 <li><a href="{{ url('/logout') }}">Logout<i class="fa fa-sign-out fa-mg-left"></i></a></li>
                             </ul>
                         </li>
@@ -78,6 +78,12 @@
         <div class="alert alert-success alert-dismissible fade in" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
             {{ Session::get('success') }}
+        </div>
+    @endif
+    @if (Session::has('error'))
+        <div class="alert alert-danger alert-dismissible fade in" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+            {{ Session::get('error') }}
         </div>
     @endif
 
