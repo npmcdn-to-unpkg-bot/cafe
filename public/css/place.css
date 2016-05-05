@@ -13,7 +13,7 @@
 }
 
 .place-details-thumbnail {
-  height: 328px;
+  height: 250px;
   width: 100%;
   border-radius: 4px;
   background: url('../img/gallery/gallery01.jpg');
@@ -81,7 +81,6 @@
   float: left;
   margin-left: 10px;
   text-align: left;
-  font-style: none;
   font-weight: bold;
 }
 
@@ -136,60 +135,20 @@
   text-align: center;
 }
 
-.review-gallery .row{
-  margin: 10px -7.5px;
-}
-
-.review-gallery .col-lg-2, .review-gallery .col-md-2, .review-gallery .col-sm-2, .review-gallery .col-xs-2{
-  padding: 0 7.5px;
-}
-
-.review-gallery-item{
-  margin: 0 auto 10px 0;
+.review{
   overflow: hidden;
+  line-height: 2.0;
 }
 
-.review-gallery-item img{
-  max-width: 100%;
-  height: 75px;
-  border-radius: 4px;
-}
-
-.place-details-hotline {
-  border-top: 4px solid #233976;
-  border-bottom: 4px solid #233976;
-  background: rgba(208, 34, 41, 0.8);
-  color: #ffffff;
-  font-weight: bold;
-  font-size: 20px;
-  height: 50px;
-  line-height: 40px;
-  margin-top: 98%;
-}
-
-.place-details-hotline i {
-  margin-right: 10px;
-}
-
-.screenshots-gallery-item{
-  margin: 10px 0;
-  overflow: hidden;
-}
-
-.screenshots-gallery-item img{
-  max-width: 100%;
+.review img{
+  max-width: 100% !important;
+  height: auto !important;
 }
 
 .status{
   text-align: center;
   font-style: italic;
   font-size: 13px;
-}
-
-.comments {
-  background: #ffffff;
-  padding-bottom: 20px;
-  border: 1px solid #eee;
 }
 
 .comments-title {
@@ -236,17 +195,20 @@
 .place-detail-title{
   font-family: 'Roboto Mono';
   font-size: 22px;
+  margin: 10px 0;
 }
 
-.place-info{
+.infomation-map ul{
   margin: 20px 0;
+  padding: 0;
+  list-style: none;
 }
 
-.place-info li{
-  padding: 10px 0;
+.infomation-map ul li{
+  padding: 7.5px 0;
 }
 
-.place-info li i{
+.infomation-map ul li i{
   margin-right: 10px;
   color: #ff9800; 
 }
@@ -279,9 +241,22 @@
   #place-full-info{
     width: 100% !important;
   }
-
-  .review-gallery-item img{
-    max-width: 100%;
-    height: auto !important;
-  }
 }
+
+/* fancybox unscroll to top when click */
+.fancybox-lock body {
+  overflow: visible !important;
+}
+
+.fancybox{
+  text-align: center;
+}
+
+.social{
+  background: #fff;
+  margin: 10px 0;
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+

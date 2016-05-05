@@ -9,7 +9,7 @@ use Codesleeve\Stapler\ORM\EloquentTrait;
 class Post extends Model implements StaplerableInterface
 {
     use EloquentTrait;
-
+    
     protected $fillable = [
         'title', 'summary', 'body', 'user_id', 'cover'
     ];

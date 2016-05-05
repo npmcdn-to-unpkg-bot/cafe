@@ -17,7 +17,7 @@
             <div class="profile">
                 <div class="row">
                     <div class="col-lg-5 col-md-5 col-xs-5 align-center">
-                        <img class="avatar img-circle" src="{{ $user->avatar->url() }}" alt="">
+                        <img class="avatar img-circle" src="{{ $user->avatar->url('medium') }}" alt="">
                         <h3 class="username">{{ $user->name }}</h3>
                         <p class="email">{{ $user->email }}</p>
                     </div>

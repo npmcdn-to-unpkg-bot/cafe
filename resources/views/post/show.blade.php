@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    | Post
+    | {{ $post->title }}
 @endsection
 
 @section('style')
@@ -13,250 +13,252 @@
     <div id="content">
         <section class="blogs blogs-wrapper" id="blogs">
             <div class="container">
-                <div class="col-lg-8 col-md-8 col-sm-8 blog-area-left">
-                    <div class="blog-detail-content">
-                        <div class="owners">
-                            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
-                                <a href="{{ route('profile.show', $post->user->id) }}" class="author_avatar">
-                                    <img alt="" src="{{ $post->user->avatar->url('thumb') }}">
-                                </a>
+                <div class="row">
+                    <div class="col-lg-8 col-md-8 col-sm-8 blog-area-left">
+                        <div class="blog-detail-content">
+                            <div class="owners">
+                                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                                    <a href="{{ route('profile.show', $post->user->id) }}" class="author_avatar">
+                                        <img alt="" src="{{ $post->user->avatar->url('thumb') }}">
+                                    </a>
+                                </div>
+                                <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
+                                    <a href="{{ route('profile.show', $post->user->id) }}" class="author_name">{{ $post->user->name }}</a>
+                                    <p>{{ date('M j, Y h:ia', strtotime($post->created_at)) }}</p>
+                                </div>
                             </div>
-                            <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
-                                <a href="{{ route('profile.show', $post->user->id) }}" class="author_name">{{ $post->user->name }}</a>
-                                <p>{{ date('M j, Y h:ia', strtotime($post->created_at)) }}</p>
+                            <div class="image-cover">
+                                <img src="{{ $post->cover->url() }}" >
                             </div>
-                        </div>
-                        <div class="image-cover">
-                            <img src="{{ $post->cover->url() }}" >
-                        </div>
-                        <h1 class="blog-title">{{ $post->title }}</h1>
-                        <div class="content">
-                            <div class="content-main">
-                                <p class="summary">
-                                    {{ $post->summary }}
-                                </p>
-                                {!! $post->body !!}
-                            </div>
+                            <h1 class="blog-title">{{ $post->title }}</h1>
+                            <div class="content">
+                                <div class="content-main">
+                                    <p class="summary">
+                                        {{ $post->summary }}
+                                    </p>
+                                    {!! $post->body !!}
+                                </div>
 
-                            <div class="social">
-                                <ul class="like-comment">
-                                    <li id="likes-count"><i class="fa fa-heart fa-mg-right"></i><span>30</span></li>
-                                    <li id="comments-count"><i class="fa fa-comments fa-mg-right"></i><span>{{ $post->comments->count() }}</span></li>
-                                </ul>
-                                <ul class="social-links">
-                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                </ul>
-                                <div class="comments">
-                                    <div class="comment-input">
-                                        {!! Form::open(array('route' => array('posts.storeComment', $post->id), 'id' => 'new-comment-form')) !!}
-                                            {{ Form::text('body', null, array('id' => 'comment-body', 'placeholder' => 'Write your comment....')) }}
-                                        {!! Form::close() !!}
-                                    </div>
-                                    <div class="all-comments" id="all-comments">
-                                        @foreach($post->comments->reverse() as $comment)
-                                            <div class="wrapper">
-                                                <div class="avatar-comment">
-                                                    <a href="{{ route('profile.show', $comment->user->id) }}"><img alt="" src="{{ $comment->user->avatar->url('thumb') }}"></a>
-                                                </div>
-                                                <div class="cmt-wrapper">
-                                                    <div class="name">
-                                                        <h5 class="bold"><a href="{{ route('profile.show', $comment->user->id) }}">{{ $comment->user->name }}</a></h5>
+                                <div class="social">
+                                    <ul class="like-comment">
+                                        <li id="likes-count"><i class="fa fa-heart fa-mg-right"></i><span>30</span></li>
+                                        <li id="comments-count"><i class="fa fa-comments fa-mg-right"></i><span>{{ $post->comments->count() }}</span></li>
+                                    </ul>
+                                    <ul class="social-links">
+                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                    </ul>
+                                    <div class="comments">
+                                        <div class="comment-input">
+                                            {!! Form::open(array('route' => array('posts.storeComment', $post->id), 'id' => 'new-comment-form', 'autocomplete' => 'off')) !!}
+                                                {{ Form::text('body', null, array('id' => 'comment-body', 'placeholder' => 'Write your comment....')) }}
+                                            {!! Form::close() !!}
+                                        </div>
+                                        <div class="all-comments" id="all-comments">
+                                            @foreach($post->comments->reverse() as $comment)
+                                                <div class="wrapper">
+                                                    <div class="avatar-comment">
+                                                        <a href="{{ route('profile.show', $comment->user->id) }}"><img alt="" src="{{ $comment->user->avatar->url('thumb') }}"></a>
                                                     </div>
-                                                    <div class="cmt-content">
-                                                        <span>{{ $comment->body }}</span>
-                                                    </div>
-                                                    @if(Auth::user())
-                                                        @if ($comment->user_id == Auth::user()->id)
-                                                            <a href=" {{ route('posts.destroyComments', [$post->id, $comment->id]) }}" class="comment-destroy"><i class="fa fa-trash"></i></a>
+                                                    <div class="cmt-wrapper">
+                                                        <div class="name">
+                                                            <h5 class="bold"><a href="{{ route('profile.show', $comment->user->id) }}">{{ $comment->user->name }}</a></h5>
+                                                        </div>
+                                                        <div class="cmt-content">
+                                                            <span>{{ $comment->body }}</span>
+                                                        </div>
+                                                        @if(Auth::user())
+                                                            @if ($comment->user_id == Auth::user()->id || Auth::user()->is_admin)
+                                                                <a href=" {{ route('posts.destroyComments', [$post->id, $comment->id]) }}" class="comment-destroy"><i class="fa fa-trash"></i></a>
+                                                            @endif
                                                         @endif
-                                                    @endif
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        @endforeach
+                                            @endforeach
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="col-lg-4 col-md-4 col-sm-4 blog-area-right">
-                    <div id="chuyen-de-right">
-                        <div class="tabs-box">
-                            <ul class="clearfix">
-                                <li class="active"><a href="#topnew">Mới nhất</a></li>
-                                <li class=""><a href="#topview">Hot nhất</a></li>
-                            </ul>
+                    <div class="col-lg-4 col-md-4 col-sm-4 blog-area-right">
+                        <div id="chuyen-de-right">
+                            <div class="tabs-box">
+                                <ul class="clearfix">
+                                    <li class="active"><a href="#topnew">Mới nhất</a></li>
+                                    <li class=""><a href="#topview">Hot nhất</a></li>
+                                </ul>
 
-                            <div id="topnew" class="build-tab">
-                                <div class="article-new clearfix">
-                                    <a href="blog-detail.html">
-                                        <img alt="" src="../img/blogs-connect/anothers/an1.jpg">
-                                    </a>
-                                    <div class="article-new-content">
-                                        <div class="article-new-title">
-                                            <a href="blog-detail.html" title="Cuộc đua giành quán quân của các thức uống trên cả tuyệt vời">Cuộc đua giành quán quân của các thức uống trên cả tuyệt vời</a>
+                                <div id="topnew" class="build-tab">
+                                    <div class="article-new clearfix">
+                                        <a href="blog-detail.html">
+                                            <img alt="" src="../img/blogs-connect/anothers/an1.jpg">
+                                        </a>
+                                        <div class="article-new-content">
+                                            <div class="article-new-title">
+                                                <a href="blog-detail.html" title="Cuộc đua giành quán quân của các thức uống trên cả tuyệt vời">Cuộc đua giành quán quân của các thức uống trên cả tuyệt vời</a>
+                                            </div>
+                                            <div class="article-new-description">
+                                                Thức uống cũng sành điệu quá nè.
+                                            </div>
                                         </div>
-                                        <div class="article-new-description">
-                                            Thức uống cũng sành điệu quá nè.
+                                    </div>
+
+                                    <div class="article-new clearfix">
+                                        <a href="blog-detail.html">
+                                            <img alt="" src="../img/blogs-connect/anothers/an2.jpg">
+                                        </a>
+                                        <div class="article-new-content">
+                                            <div class="article-new-title">
+                                                <a href="blog-detail.html" title="Các món ăn vặt đang sốt rần rần ở Hà Nội">Các món ăn vặt đang "sốt rần rần" ở Hà Nội</a>
+                                            </div>
+                                            <div class="article-new-description">
+                                                Hà Nội truyền thống dần nhường chỗ cho hàng trăm món ăn vặt mới lạ, update mỗi ngày. Các bạn đã thử hết
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="article-new clearfix">
+                                        <a href="blog-detail.html">
+                                            <img alt="" src="../img/blogs-connect/anothers/an3.jpg">
+                                        </a>
+                                        <div class="article-new-content">
+                                            <div class="article-new-title">
+                                                <a href="blog-detail.html" title="Bí kíp du lịch đảo Nam Du chỉ 1 triệu 7">Bí kíp du lịch đảo Nam Du chỉ 1 triệu 7</a>
+                                            </div>
+                                            <div class="article-new-description">
+                                                Nam Du (Kiên Giang) hứa hẹn sẽ là điểm đến cực “hot” mùa hè này bởi làn nước trong xanh, hàng dừa rợp bóng
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="article-new clearfix">
+                                        <a href="blog-detail.html">
+                                            <img alt="" src="../img/blogs-connect/anothers/an4.jpg">
+                                        </a>
+                                        <div class="article-new-content">
+                                            <div class="article-new-title">
+                                                <a href="blog-detail.html" title="Cuộc đua giành quán quân của các thức uống trên cả tuyệt vời">Cuộc đua giành quán quân của các thức uống trên cả tuyệt vời</a>
+                                            </div>
+                                            <div class="article-new-description">
+                                                Thức uống cũng sành điệu quá nè.
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="article-new clearfix">
+                                        <a href="blog-detail.html">
+                                            <img alt="" src="../img/blogs-connect/anothers/an5.jpg">
+                                        </a>
+                                        <div class="article-new-content">
+                                            <div class="article-new-title">
+                                                <a href="blog-detail.html" title="Các món ăn vặt đang sốt rần rần ở Hà Nội">Các món ăn vặt đang "sốt rần rần" ở Hà Nội</a>
+                                            </div>
+                                            <div class="article-new-description">
+                                                Hà Nội truyền thống dần nhường chỗ cho hàng trăm món ăn vặt mới lạ, update mỗi ngày. Các bạn đã thử hết
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="article-new clearfix">
+                                        <a href="blog-detail.html">
+                                            <img alt="" src="../img/blogs-connect/anothers/an6.jpg">
+                                        </a>
+                                        <div class="article-new-content">
+                                            <div class="article-new-title">
+                                                <a href="blog-detail.html" title="Bí kíp du lịch đảo Nam Du chỉ 1 triệu 7">Bí kíp du lịch đảo Nam Du chỉ 1 triệu 7</a>
+                                            </div>
+                                            <div class="article-new-description">
+                                                Nam Du (Kiên Giang) hứa hẹn sẽ là điểm đến cực “hot” mùa hè này bởi làn nước trong xanh, hàng dừa rợp bóng
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="article-new clearfix">
-                                    <a href="blog-detail.html">
-                                        <img alt="" src="../img/blogs-connect/anothers/an2.jpg">
-                                    </a>
-                                    <div class="article-new-content">
-                                        <div class="article-new-title">
-                                            <a href="blog-detail.html" title="Các món ăn vặt đang sốt rần rần ở Hà Nội">Các món ăn vặt đang "sốt rần rần" ở Hà Nội</a>
-                                        </div>
-                                        <div class="article-new-description">
-                                            Hà Nội truyền thống dần nhường chỗ cho hàng trăm món ăn vặt mới lạ, update mỗi ngày. Các bạn đã thử hết
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="article-new clearfix">
-                                    <a href="blog-detail.html">
-                                        <img alt="" src="../img/blogs-connect/anothers/an3.jpg">
-                                    </a>
-                                    <div class="article-new-content">
-                                        <div class="article-new-title">
-                                            <a href="blog-detail.html" title="Bí kíp du lịch đảo Nam Du chỉ 1 triệu 7">Bí kíp du lịch đảo Nam Du chỉ 1 triệu 7</a>
-                                        </div>
-                                        <div class="article-new-description">
-                                            Nam Du (Kiên Giang) hứa hẹn sẽ là điểm đến cực “hot” mùa hè này bởi làn nước trong xanh, hàng dừa rợp bóng
+                                <div id="topview" class="build-tab" style="display: none;">
+                                    <div class="article-new clearfix">
+                                        <a href="blog-detail.html">
+                                            <img alt="" src="../img/blogs-connect/anothers/an6.jpg">
+                                        </a>
+                                        <div class="article-new-content">
+                                            <div class="article-new-title">
+                                                <a href="blog-detail.html" title="Cuộc đua giành quán quân của các thức uống trên cả tuyệt vời">Cuộc đua giành quán quân của các thức uống trên cả tuyệt vời</a>
+                                            </div>
+                                            <div class="article-new-description">
+                                                Thức uống cũng sành điệu quá nè.
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="article-new clearfix">
-                                    <a href="blog-detail.html">
-                                        <img alt="" src="../img/blogs-connect/anothers/an4.jpg">
-                                    </a>
-                                    <div class="article-new-content">
-                                        <div class="article-new-title">
-                                            <a href="blog-detail.html" title="Cuộc đua giành quán quân của các thức uống trên cả tuyệt vời">Cuộc đua giành quán quân của các thức uống trên cả tuyệt vời</a>
-                                        </div>
-                                        <div class="article-new-description">
-                                            Thức uống cũng sành điệu quá nè.
+                                    <div class="article-new clearfix">
+                                        <a href="blog-detail.html">
+                                            <img alt="" src="../img/blogs-connect/anothers/an5.jpg">
+                                        </a>
+                                        <div class="article-new-content">
+                                            <div class="article-new-title">
+                                                <a href="blog-detail.html" title="Các món ăn vặt đang sốt rần rần ở Hà Nội">Các món ăn vặt đang "sốt rần rần" ở Hà Nội</a>
+                                            </div>
+                                            <div class="article-new-description">
+                                                Hà Nội truyền thống dần nhường chỗ cho hàng trăm món ăn vặt mới lạ, update mỗi ngày. Các bạn đã thử hết
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="article-new clearfix">
-                                    <a href="blog-detail.html">
-                                        <img alt="" src="../img/blogs-connect/anothers/an5.jpg">
-                                    </a>
-                                    <div class="article-new-content">
-                                        <div class="article-new-title">
-                                            <a href="blog-detail.html" title="Các món ăn vặt đang sốt rần rần ở Hà Nội">Các món ăn vặt đang "sốt rần rần" ở Hà Nội</a>
-                                        </div>
-                                        <div class="article-new-description">
-                                            Hà Nội truyền thống dần nhường chỗ cho hàng trăm món ăn vặt mới lạ, update mỗi ngày. Các bạn đã thử hết
+                                    <div class="article-new clearfix">
+                                        <a href="blog-detail.html">
+                                            <img alt="" src="../img/blogs-connect/anothers/an4.jpg">
+                                        </a>
+                                        <div class="article-new-content">
+                                            <div class="article-new-title">
+                                                <a href="blog-detail.html" title="Bí kíp du lịch đảo Nam Du chỉ 1 triệu 7">Bí kíp du lịch đảo Nam Du chỉ 1 triệu 7</a>
+                                            </div>
+                                            <div class="article-new-description">
+                                                Nam Du (Kiên Giang) hứa hẹn sẽ là điểm đến cực “hot” mùa hè này bởi làn nước trong xanh, hàng dừa rợp bóng
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="article-new clearfix">
-                                    <a href="blog-detail.html">
-                                        <img alt="" src="../img/blogs-connect/anothers/an6.jpg">
-                                    </a>
-                                    <div class="article-new-content">
-                                        <div class="article-new-title">
-                                            <a href="blog-detail.html" title="Bí kíp du lịch đảo Nam Du chỉ 1 triệu 7">Bí kíp du lịch đảo Nam Du chỉ 1 triệu 7</a>
-                                        </div>
-                                        <div class="article-new-description">
-                                            Nam Du (Kiên Giang) hứa hẹn sẽ là điểm đến cực “hot” mùa hè này bởi làn nước trong xanh, hàng dừa rợp bóng
+                                    <div class="article-new clearfix">
+                                        <a href="blog-detail.html">
+                                            <img alt="" src="../img/blogs-connect/anothers/an3.jpg">
+                                        </a>
+                                        <div class="article-new-content">
+                                            <div class="article-new-title">
+                                                <a href="blog-detail.html" title="Cuộc đua giành quán quân của các thức uống trên cả tuyệt vời">Cuộc đua giành quán quân của các thức uống trên cả tuyệt vời</a>
+                                            </div>
+                                            <div class="article-new-description">
+                                                Thức uống cũng sành điệu quá nè.
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
 
-                            <div id="topview" class="build-tab" style="display: none;">
-                                <div class="article-new clearfix">
-                                    <a href="blog-detail.html">
-                                        <img alt="" src="../img/blogs-connect/anothers/an6.jpg">
-                                    </a>
-                                    <div class="article-new-content">
-                                        <div class="article-new-title">
-                                            <a href="blog-detail.html" title="Cuộc đua giành quán quân của các thức uống trên cả tuyệt vời">Cuộc đua giành quán quân của các thức uống trên cả tuyệt vời</a>
-                                        </div>
-                                        <div class="article-new-description">
-                                            Thức uống cũng sành điệu quá nè.
+                                    <div class="article-new clearfix">
+                                        <a href="blog-detail.html">
+                                            <img alt="" src="../img/blogs-connect/anothers/an2.jpg">
+                                        </a>
+                                        <div class="article-new-content">
+                                            <div class="article-new-title">
+                                                <a href="blog-detail.html" title="Các món ăn vặt đang sốt rần rần ở Hà Nội">Các món ăn vặt đang "sốt rần rần" ở Hà Nội</a>
+                                            </div>
+                                            <div class="article-new-description">
+                                                Hà Nội truyền thống dần nhường chỗ cho hàng trăm món ăn vặt mới lạ, update mỗi ngày. Các bạn đã thử hết
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="article-new clearfix">
-                                    <a href="blog-detail.html">
-                                        <img alt="" src="../img/blogs-connect/anothers/an5.jpg">
-                                    </a>
-                                    <div class="article-new-content">
-                                        <div class="article-new-title">
-                                            <a href="blog-detail.html" title="Các món ăn vặt đang sốt rần rần ở Hà Nội">Các món ăn vặt đang "sốt rần rần" ở Hà Nội</a>
-                                        </div>
-                                        <div class="article-new-description">
-                                            Hà Nội truyền thống dần nhường chỗ cho hàng trăm món ăn vặt mới lạ, update mỗi ngày. Các bạn đã thử hết
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="article-new clearfix">
-                                    <a href="blog-detail.html">
-                                        <img alt="" src="../img/blogs-connect/anothers/an4.jpg">
-                                    </a>
-                                    <div class="article-new-content">
-                                        <div class="article-new-title">
-                                            <a href="blog-detail.html" title="Bí kíp du lịch đảo Nam Du chỉ 1 triệu 7">Bí kíp du lịch đảo Nam Du chỉ 1 triệu 7</a>
-                                        </div>
-                                        <div class="article-new-description">
-                                            Nam Du (Kiên Giang) hứa hẹn sẽ là điểm đến cực “hot” mùa hè này bởi làn nước trong xanh, hàng dừa rợp bóng
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="article-new clearfix">
-                                    <a href="blog-detail.html">
-                                        <img alt="" src="../img/blogs-connect/anothers/an3.jpg">
-                                    </a>
-                                    <div class="article-new-content">
-                                        <div class="article-new-title">
-                                            <a href="blog-detail.html" title="Cuộc đua giành quán quân của các thức uống trên cả tuyệt vời">Cuộc đua giành quán quân của các thức uống trên cả tuyệt vời</a>
-                                        </div>
-                                        <div class="article-new-description">
-                                            Thức uống cũng sành điệu quá nè.
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="article-new clearfix">
-                                    <a href="blog-detail.html">
-                                        <img alt="" src="../img/blogs-connect/anothers/an2.jpg">
-                                    </a>
-                                    <div class="article-new-content">
-                                        <div class="article-new-title">
-                                            <a href="blog-detail.html" title="Các món ăn vặt đang sốt rần rần ở Hà Nội">Các món ăn vặt đang "sốt rần rần" ở Hà Nội</a>
-                                        </div>
-                                        <div class="article-new-description">
-                                            Hà Nội truyền thống dần nhường chỗ cho hàng trăm món ăn vặt mới lạ, update mỗi ngày. Các bạn đã thử hết
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="article-new clearfix">
-                                    <a href="blog-detail.html">
-                                        <img alt="" src="../img/blogs-connect/anothers/an1.jpg">
-                                    </a>
-                                    <div class="article-new-content">
-                                        <div class="article-new-title">
-                                            <a href="blog-detail.html" title="Bí kíp du lịch đảo Nam Du chỉ 1 triệu 7">Bí kíp du lịch đảo Nam Du chỉ 1 triệu 7</a>
-                                        </div>
-                                        <div class="article-new-description">
-                                            Nam Du (Kiên Giang) hứa hẹn sẽ là điểm đến cực “hot” mùa hè này bởi làn nước trong xanh, hàng dừa rợp bóng
+                                    <div class="article-new clearfix">
+                                        <a href="blog-detail.html">
+                                            <img alt="" src="../img/blogs-connect/anothers/an1.jpg">
+                                        </a>
+                                        <div class="article-new-content">
+                                            <div class="article-new-title">
+                                                <a href="blog-detail.html" title="Bí kíp du lịch đảo Nam Du chỉ 1 triệu 7">Bí kíp du lịch đảo Nam Du chỉ 1 triệu 7</a>
+                                            </div>
+                                            <div class="article-new-description">
+                                                Nam Du (Kiên Giang) hứa hẹn sẽ là điểm đến cực “hot” mùa hè này bởi làn nước trong xanh, hàng dừa rợp bóng
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -267,7 +269,7 @@
             </div>
         </section>
     </div>
-    @if (Auth::user() && (Auth::user()->id == $post->user->id))
+    @if (Auth::user() && (Auth::user()->id == $post->user->id || Auth::user()->is_admin))
         <div class="row post-actions">
             <div class="col-md-6">
                 {!! Html::linkRoute('posts.edit', 'Edit', array($post->id), array('class' => 'btn btn-primary btn-block')) !!}
@@ -312,10 +314,8 @@
                         htmlCode += '<div class="cmt-content">';
                         htmlCode += '<span>' + comment.body + '</span>';
                         htmlCode += '</div>';
-                        if (data.current_user_id){
-                            if (comment.user_id == data.current_user_id){
-                                htmlCode += '<a href="{{ url('/posts') }}' + '/' + comment.post_id + '/comments/' + comment.id + '" class="comment-destroy"><i class="fa fa-trash"></i></a>';
-                            }
+                        if (comment.user_id == data.current_user_id || data.user_is_admin == true){
+                            htmlCode += '<a href="{{ url('/posts') }}' + '/' + comment.post_id + '/comments/' + comment.id + '" class="comment-destroy"><i class="fa fa-trash"></i></a>';
                         }
                         htmlCode += '</div>';
                         htmlCode += '</div>';
@@ -357,10 +357,8 @@
                         htmlCode += '<div class="cmt-content">';
                         htmlCode += '<span>' + comment.body + '</span>';
                         htmlCode += '</div>';
-                        if (data.current_user_id){
-                            if (comment.user_id == data.current_user_id){
-                                htmlCode += '<a href="{{ url('/posts') }}' + '/' + comment.post_id + '/comments/' + comment.id + '" class="comment-destroy"><i class="fa fa-trash"></i></a>';
-                            }
+                        if (comment.user_id == data.current_user_id || data.user_is_admin == true){
+                            htmlCode += '<a href="{{ url('/posts') }}' + '/' + comment.post_id + '/comments/' + comment.id + '" class="comment-destroy"><i class="fa fa-trash"></i></a>';
                         }
                         htmlCode += '</div>';
                         htmlCode += '</div>';
@@ -373,7 +371,7 @@
                     $('#comments-count span').text(data.comments.length);
                 },
                 error: function(err){
-                    console.log('Error when create comment: ' + err);
+                    console.log('Error when destroy comment: ' + err);
                 }
             });
         });
