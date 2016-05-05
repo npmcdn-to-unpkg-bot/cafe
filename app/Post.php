@@ -9,6 +9,7 @@ use Codesleeve\Stapler\ORM\EloquentTrait;
 class Post extends Model implements StaplerableInterface
 {
     use EloquentTrait;
+    use \Conner\Likeable\LikeableTrait;
     
     protected $fillable = [
         'title', 'summary', 'body', 'user_id', 'cover'

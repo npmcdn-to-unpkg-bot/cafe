@@ -40,8 +40,30 @@
                                 </div>
 
                                 <div class="social">
+                                    @if(Auth::user())
+                                        <ul id="likeable">
+                                            @if($post->liked())
+                                                <li>
+                                                    <a href="#" id="unlike-post">
+                                                        <i class="fa fa-thumbs-o-down" aria-hidden="true"></i> Unlike
+                                                    </a>
+                                                </li>
+                                            @else
+                                                <li>
+                                                    <a href="#" id="like-post">
+                                                        <i class="fa fa-thumbs-o-up" aria-hidden="true"></i> Like
+                                                    </a>
+                                                </li>
+                                            @endif
+                                        </ul>
+                                    @endif
                                     <ul class="like-comment">
-                                        <li id="likes-count"><i class="fa fa-heart fa-mg-right"></i><span>30</span></li>
+                                        <li>
+                                            <a href="#" id="liked-users" data-toggle="modal" data-target="#likedUsers">
+                                                <i class="fa fa-heartbeat" aria-hidden="true"></i> Liked
+                                            </a>
+                                        </li>
+                                        <li id="likes-count"><i class="fa fa-heart fa-mg-right"></i><span>{{ $post->likeCount }}</span></li>
                                         <li id="comments-count"><i class="fa fa-comments fa-mg-right"></i><span>{{ $post->comments->count() }}</span></li>
                                     </ul>
                                     <ul class="social-links">
@@ -266,6 +288,31 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="modal fade" id="likedUsers" tabindex="-1" role="dialog">
+                    <div class="modal-dialog modal-sm">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title">Liked Users</h4>
+                            </div>
+                            <div class="modal-body">
+                                @foreach($likedUsers as $user)
+                                    <div class="media">
+                                        <div class="media-left">
+                                            <a href="{{ route('profile.show', $user->id) }}">
+                                                <img class="media-object" src="{{ $user->avatar->url('thumb') }}" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="media-body">
+                                            <a href="{{ route('profile.show', $user->id) }}">{{ $user->name }}</a>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
     </div>
@@ -287,7 +334,7 @@
 
 @section('script')
     <script>
-        {{-- Create comment handle by ajax--}}
+        // Create comment handle by ajax
         $('#new-comment-form').submit(function(e){
             e.preventDefault();
 
@@ -335,7 +382,7 @@
             });
         });
 
-        {{-- Delete comment handle by ajax--}}
+        // Delete comment handle by ajax
         $(document).on('click', '.comment-destroy', function(e){
             e.preventDefault();
 
@@ -372,6 +419,92 @@
                 },
                 error: function(err){
                     console.log('Error when destroy comment: ' + err);
+                }
+            });
+        });
+
+        $(document).on('click', '#like-post', function(e) {
+            e.preventDefault();
+
+            $.ajax({
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                type: 'POST',
+                url: "{{ route('posts.like', $post->id) }}",
+                success: function (data) {
+                    var unlikeHtml = '',
+                        likedUsersHtml = '';
+
+                    // update likeable action
+                    unlikeHtml += '<li>';
+                    unlikeHtml += '<a href="#" id="unlike-post">'
+                    unlikeHtml += '<i class="fa fa-thumbs-o-down" aria-hidden="true"></i> Unlike';
+                    unlikeHtml += '</a>';
+                    unlikeHtml += '</li>';
+                    $('#likeable').html(unlikeHtml);
+
+                    // update liked users list
+                    data.liked_users.forEach(function (user) {
+                        likedUsersHtml += '<div class="media">';
+                        likedUsersHtml += '<div class="media-left">';
+                        likedUsersHtml += '<a href="{{ url('profile') }}' + '/' + user.user_id + '">';
+                        likedUsersHtml += '<img class="media-object" src="' + user.user_avatar_url + '" alt="">';
+                        likedUsersHtml += '</a>';
+                        likedUsersHtml += '</div>';
+                        likedUsersHtml += '<div class="media-body">';
+                        likedUsersHtml += '<a href="{{ url('profile') }}' + '/' + user.user_id + '">' + user.username + '</a>';
+                        likedUsersHtml += '</div>';
+                        likedUsersHtml += '</div>';
+                    })
+                    $('#likedUsers .modal-body').html(likedUsersHtml);
+
+                    // update like count
+                    $('#likes-count span').text(data.like_count);
+                },
+                error: function (err) {
+                    console.log('Error when like post: ' + err);
+                }
+            });
+        });
+
+        $(document).on('click', '#unlike-post', function(e) {
+            e.preventDefault();
+
+            $.ajax({
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                type: 'POST',
+                url: "{{ route('posts.unlike', $post->id) }}",
+                success: function (data) {
+                    var likeHtml = '',
+                        likedUsersHtml = '';
+
+                    // update likeable action
+                    likeHtml += '<li>';
+                    likeHtml += '<a href="#" id="like-post">'
+                    likeHtml += '<i class="fa fa-thumbs-o-up" aria-hidden="true"></i> like';
+                    likeHtml += '</a>';
+                    likeHtml += '</li>';
+                    $('#likeable').html(likeHtml);
+
+                    // update liked users list
+                    data.liked_users.forEach(function (user) {
+                        likedUsersHtml += '<div class="media">';
+                        likedUsersHtml += '<div class="media-left">';
+                        likedUsersHtml += '<a href="{{ url('profile') }}' + '/' + user.user_id + '">';
+                        likedUsersHtml += '<img class="media-object" src="' + user.user_avatar_url + '" alt="">';
+                        likedUsersHtml += '</a>';
+                        likedUsersHtml += '</div>';
+                        likedUsersHtml += '<div class="media-body">';
+                        likedUsersHtml += '<a href="{{ url('profile') }}' + '/' + user.user_id + '">' + user.username + '</a>';
+                        likedUsersHtml += '</div>';
+                        likedUsersHtml += '</div>';
+                    })
+                    $('#likedUsers .modal-body').html(likedUsersHtml);
+
+                    // update like count
+                    $('#likes-count span').text(data.like_count);
+                },
+                error: function (err) {
+                    console.log('Error when unlike post: ' + err);
                 }
             });
         });

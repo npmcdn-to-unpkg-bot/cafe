@@ -8,6 +8,7 @@ use Auth;
 use Session;
 use App\Post;
 use App\Comment;
+use App\User;
 
 class PostController extends Controller
 {
@@ -51,7 +52,19 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::find($id);
-        return view('post.show')->withPost($post);
+        $likes = $post->likes;
+
+        $likedUser = [];
+        if(count($likes) > 0){
+            $likedUsers = User::find(
+                collect($likes)->map(function($like){
+                    return $like->user_id;
+                })->toArray()
+            );
+        }
+        return view('post.show')
+            ->withPost($post)
+            ->with('likedUsers', $likedUsers);
     }
 
     public function edit($id)
@@ -172,6 +185,66 @@ class PostController extends Controller
                     'user_is_admin' => Auth::user()->is_admin
                 ]);
             }
+        }
+    }
+
+    public function like(Request $request, $postId){
+        if($request->ajax()){
+            $post = Post::find($postId);
+            $post->like();
+
+            $likedUsers = [];
+            if(count($post->likes) > 0){
+                $users = User::find(
+                    collect($post->likes)->map(function($like){
+                        return $like->user_id;
+                    })->toArray()
+                );
+
+                foreach ($users as $user){
+                    array_push($likedUsers, array(
+                        'user_id' => $user->id,
+                        'username' => $user->name,
+                        'user_avatar_url' => $user->avatar->url('thumb')
+                    ));
+                }
+            }
+
+            return response()->json([
+                'post_id' => $postId,
+                'like_count' => $post->likeCount,
+                'liked_users' => $likedUsers
+            ]);
+        }
+    }
+
+    public function unlike(Request $request, $postId){
+        if($request->ajax()){
+            $post = Post::find($postId);
+            $post->unlike();
+
+            $likedUsers = [];
+            if(count($post->likes) > 0){
+                $users = User::find(
+                    collect($post->likes)->map(function($like){
+                        return $like->user_id;
+                    })->toArray()
+                );
+
+                foreach ($users as $user){
+                    array_push($likedUsers, array(
+                        'user_id' => $user->id,
+                        'username' => $user->name,
+                        'user_avatar_url' => $user->avatar->url('thumb')
+                    ));
+                }
+            }
+
+            return response()->json([
+                'post_id' => $postId,
+                'like_count' => $post->likeCount,
+                'liked_users' => $likedUsers
+            ]);
         }
     }
 }

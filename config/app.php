@@ -160,6 +160,7 @@ return [
         Tsawler\Laravelfilemanager\LaravelFilemanagerServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Codesleeve\LaravelStapler\Providers\L5ServiceProvider::class,
+        \Conner\Likeable\LikeableServiceProvider::class,
         
     ],
 
