@@ -31,7 +31,7 @@ class PostController extends Controller
     {
         $this->validate($request, array(
             'title' => 'required|max:255',
-            'cover'  => 'required',
+            'cover'  => 'required|image',
             'summary' => 'required|max:255',
             'body'  => 'required'
         ));
@@ -57,7 +57,7 @@ class PostController extends Controller
     public function edit($id)
     {
         $post = Post::find($id);
-        if(Auth::user()->id == $post->user->id) {
+        if(Auth::user()->id == $post->user->id || Auth::user()->is_admin) {
             return view('post.edit')->withPost($post);
         }
         else{
@@ -70,7 +70,7 @@ class PostController extends Controller
     {
         $post = Post::find($id);
 
-        if(Auth::user()->id == $post->user->id) {
+        if(Auth::user()->id == $post->user->id || Auth::user()->is_admin) {
             $this->validate($request, array(
                 'title' => 'required|max:255',
                 'summary' => 'required|max:255',
@@ -97,6 +97,7 @@ class PostController extends Controller
     {
         $post = Post::find($id);
         if(Auth::user()->id == $post->user->id){
+            $post->comments()->delete();
             $post->delete();
 
             Session::flash('success', 'The post was successfully deleted.');
@@ -136,7 +137,8 @@ class PostController extends Controller
             // return json response
             return response()->json([
                 'comments' => $commets_response,
-                'current_user_id' => Auth::user()->id
+                'current_user_id' => Auth::user()->id,
+                'user_is_admin' => Auth::user()->is_admin
             ]);
         }
     }
@@ -145,7 +147,7 @@ class PostController extends Controller
     {
         if($request->ajax()){
             $comment = Post::find($postId)->comments->find($commentId);
-            if ($comment->user_id == Auth::user()->id){
+            if ($comment->user_id == Auth::user()->id || Auth::user()->is_admin){
                 $comment->delete();
 
                 // get comments response data
@@ -166,7 +168,8 @@ class PostController extends Controller
                 // return json response
                 return response()->json([
                     'comments' => $commets_response,
-                    'current_user_id' => Auth::user()->id
+                    'current_user_id' => Auth::user()->id,
+                    'user_is_admin' => Auth::user()->is_admin
                 ]);
             }
         }

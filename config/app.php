@@ -159,7 +159,7 @@ return [
         Unisharp\Ckeditor\ServiceProvider::class,
         Tsawler\Laravelfilemanager\LaravelFilemanagerServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
-        Codesleeve\LaravelStapler\Providers\L5ServiceProvider::class
+        Codesleeve\LaravelStapler\Providers\L5ServiceProvider::class,
         
     ],
 

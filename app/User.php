@@ -43,4 +43,14 @@ class User extends Authenticatable implements StaplerableInterface
     {
         return $this->hasMany('App\Post');
     }
+
+    public function places()
+    {
+        return $this->hasMany('App\Place');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany('App\Comment');
+    }
 }

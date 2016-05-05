@@ -13,10 +13,10 @@
 @section('content')
     <div id="content">
         <section class="section blogs"  style="background: #f8f8f8; padding-top: 72px; padding-bottom: 20px;">
-
-            <h1>Edit profile</h1>
-            <img src="{{ $user->avatar->url() }}" alt="">
-            {!! Form::model($user, ['route' => ['profile.update', $user->id], 'method' => 'PUT', 'files' => true, 'data-parsley-validate' => '']) !!}
+            <div class="container">
+                <h1>Edit profile</h1>
+                <img src="{{ $user->avatar->url() }}" alt="">
+                {!! Form::model($user, ['route' => ['profile.update', $user->id], 'method' => 'PUT', 'files' => true, 'data-parsley-validate' => '']) !!}
                 <div class="form-group">
                     {{ Form::label('avatar', 'Avatar:') }}
                     {{ Form::file('avatar', array('class' => 'form-control')) }}
@@ -80,7 +80,8 @@
                 <div class="actions">
                     {{ Form::submit('Save Change', array('class' => 'btn btn-main')) }}
                 </div>
-            {!! Form::close() !!}
+                {!! Form::close() !!}
+            </div>
         </section>
     </div>
 @endsection
