@@ -10,6 +10,8 @@ Route::get('/', 'HomeController@index');
 Route::resource('places', 'PlaceController', ['only' => ['index', 'show']]);
 Route::post('places/{place}/comments', ['uses' => 'PlaceController@storeComment', 'as' => 'places.storeComment']);
 Route::delete('places/{place}/comments/{comment}', ['uses' => 'PlaceController@destroyComment', 'as' => 'places.destroyComments']);
+Route::post('places/{place}/like', ['uses' => 'PlaceController@like', 'as' => 'places.like']);
+Route::post('places/{place}/unlike', ['uses' => 'PlaceController@unLike', 'as' => 'places.unLike']);
 
 // Galleries routes
 Route::resource('galleries', 'GalleryController', ['only' => ['index', 'show']]);
@@ -18,6 +20,8 @@ Route::resource('galleries', 'GalleryController', ['only' => ['index', 'show']])
 Route::resource('posts', 'PostController');
 Route::post('posts/{post}/comments', ['uses' => 'PostController@storeComment', 'as' => 'posts.storeComment']);
 Route::delete('posts/{post}/comments/{comment}', ['uses' => 'PostController@destroyComment', 'as' => 'posts.destroyComments']);
+Route::post('posts/{post}/like', ['uses' => 'PostController@like', 'as' => 'posts.like']);
+Route::post('posts/{post}/unlike', ['uses' => 'PostController@unlike', 'as' => 'posts.unlike']);
 
 // Profile routes
 Route::resource('profile', 'ProfileController',  ['only' => ['show', 'edit', 'update']]);

@@ -391,3 +391,13 @@
 .image-cover img{
   width: 100% !important;
 }
+
+#likeable{
+  list-style: none;
+  padding: 0;
+}
+
+#likeable li{
+  display: inline-block;
+  margin-right: 10px;
+}

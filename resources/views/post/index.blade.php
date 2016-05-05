@@ -36,7 +36,7 @@
                                         <span>{{ $post->user->name }}</span>
                                     </a>
                                 </li>
-                                <li><i class="fa fa-heart fa-mg-right"></i>30</li>
+                                <li><i class="fa fa-heart fa-mg-right"></i>{{ $post->likeCount }}</li>
                                 <li><i class="fa fa-comments fa-mg-right"></i>{{ $post->comments->count() }}</li>
                             </ul>
                         </div>

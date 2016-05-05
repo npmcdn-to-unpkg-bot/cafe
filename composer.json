@@ -11,7 +11,8 @@
         "unisharp/laravel-ckeditor": "^4.5",
         "intervention/image": "^2.3",
         "tsawler/laravel-filemanager": "^0.6.1",
-        "codesleeve/laravel-stapler": "1.0.*"
+        "codesleeve/laravel-stapler": "1.0.*",
+        "rtconner/laravel-likeable": "~1.2"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

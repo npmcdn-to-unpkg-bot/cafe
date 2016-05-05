@@ -94,4 +94,12 @@ class PlaceController extends Controller
             }
         }
     }
+
+    public function like(Request $request, $postId){
+
+    }
+
+    public function unLike(Request $request, $postId){
+
+    }
 }
