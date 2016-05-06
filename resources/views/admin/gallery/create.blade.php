@@ -35,6 +35,5 @@
 @endsection
 
 @section('script')
-    {!! Html::script('/vendor/unisharp/laravel-ckeditor/ckeditor.js') !!}
     {!! Html::script('js/parsley.min.js') !!}
 @endsection

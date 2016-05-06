@@ -105,6 +105,12 @@
                         </a>
                     </li>
                     <li>
+                        <a href="{{ route('admin.areas.index') }}" class="{{ $controller == 'AreaController' ? 'active' : '' }}">
+                            <div class="gui-icon"><i class="fa fa-puzzle-piece fa-fw"></i></div>
+                            <span class="title">Areas</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="{{ route('admin.galleries.index') }}" class="{{ $controller == 'GalleryController' ? 'active' : '' }}">
                             <div class="gui-icon"><i class="fa fa-puzzle-piece fa-fw"></i></div>
                             <span class="title">Galleries</span>

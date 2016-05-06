@@ -33,7 +33,7 @@
 
             <div class="form-group">
                 {{ Form::label('summary', "Summary:") }}
-                {{ Form::textarea('summary', null, array('class' => 'form-control', 'required' => '', 'maxlength' => '255')) }}
+                {{ Form::textarea('summary', null, array('class' => 'form-control', 'required' => '', 'maxlength' => '255', 'minlength' => '50')) }}
                 @if ($errors->has('summary'))
                     <span class="help-block">
                         <strong>{{ $errors->first('summary') }}</strong>

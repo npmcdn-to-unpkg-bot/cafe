@@ -367,10 +367,8 @@ a{
 
 .card .info .description{
   margin: 10px 0 20px 0;
-  line-height: 1.4;
   width: 100%;
   font-size: 13px;
-  line-height: 1.75;
 }
 
 .card .card-bottom{
@@ -612,6 +610,7 @@ a{
   padding: 20px 0;
   color: #bdbdbd;
   font-size: 12px;
+
 }
 
 .footer .social-links{
@@ -831,4 +830,18 @@ a{
   right: 10px;
   bottom: 50px;
   z-index: 999;
+}
+
+.search-results{
+  margin: 35px 0 20px 0;
+}
+
+.search-results .media{
+  padding: 10px 0;
+  margin-top: 0;
+  border-top: 1px solid #eeeeee;
+}
+
+.search-results .media:last-child{
+  border-bottom: 1px solid #eeeeee;
 }

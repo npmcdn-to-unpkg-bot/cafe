@@ -12,17 +12,26 @@ class Place extends Model implements StaplerableInterface
     use \Conner\Likeable\LikeableTrait;
 
     protected $fillable = [
-        'name', 'description', 'space_point', 'service_point', 'quality_point', 'address_point', 'price_point', 'address', 'phone_number', 'open_time', 'close_time', 'start_price', 'end_price', 'longitude', 'latitude', 'character', 'review', 'cover',
+        'name', 'description', 'space_point', 'service_point', 'quality_point', 'address_point', 'price_point', 'address', 'phone_number', 'open_time', 'close_time', 'start_price', 'end_price', 'longitude', 'latitude', 'character', 'review', 'cover', 'area_id',
     ];
 
     public function __construct(array $attributes = array()) {
-        $this->hasAttachedFile('cover');
+        $this->hasAttachedFile('cover',[
+            'styles' => [
+                'thumb' => '64x64'
+            ]
+        ]);
         parent::__construct($attributes);
     }
 
     public function user()
     {
         return $this->belongsTo('App\User');
+    }
+
+    public function area()
+    {
+        return $this->belongsTo('App\Area');
     }
 
     public function comments()

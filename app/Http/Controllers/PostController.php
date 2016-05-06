@@ -33,7 +33,7 @@ class PostController extends Controller
         $this->validate($request, array(
             'title' => 'required|max:255',
             'cover'  => 'required|image',
-            'summary' => 'required|max:255',
+            'summary' => 'required|min:50|max:255',
             'body'  => 'required'
         ));
 
@@ -86,7 +86,7 @@ class PostController extends Controller
         if(Auth::user()->id == $post->user->id || Auth::user()->is_admin) {
             $this->validate($request, array(
                 'title' => 'required|max:255',
-                'summary' => 'required|max:255',
+                'summary' => 'required|min:50|max:255',
                 'body' => 'required'
             ));
 

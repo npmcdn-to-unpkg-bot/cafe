@@ -21,14 +21,17 @@ class PlaceController extends Controller
     public function index()
     {
         $places = Place::all();
-        return view('admin.place.index')->withPlaces($places);
+        return view('admin.place.index')
+            ->withPlaces($places);
     }
 
     public function create()
     {
         $galleries = DB::table('galleries')->select('id', 'name')->get();
+        $areas = DB::table('areas')->select('id', 'name')->get();
         return view('admin.place.create')
-            ->withGalleries($galleries);
+            ->withGalleries($galleries)
+            ->withAreas($areas);
     }
 
     public function store(Request $request)
@@ -36,7 +39,7 @@ class PlaceController extends Controller
         $this->validate($request, array(
             'name' => 'required|max:255',
             'cover' => 'required|image',
-            'description' => 'required|max:255',
+            'description' => 'required|min:50|max:255',
             'space_point' => 'required|numeric',
             'service_point' => 'required|numeric',
             'quality_point' => 'required|numeric',
@@ -51,7 +54,8 @@ class PlaceController extends Controller
             'longitude' => 'required|numeric',
             'latitude' => 'required|numeric',
             'character' => 'required',
-            'review' => 'required'
+            'review' => 'required',
+            'area_id' => 'required'
         ));
 
         $place = new Place(array(
@@ -72,7 +76,8 @@ class PlaceController extends Controller
             'longitude' => $request->longitude,
             'latitude' => $request->latitude,
             'character' => $request->character,
-            'review' => $request->review
+            'review' => $request->review,
+            'area_id' => $request->area_id
         ));
         Auth::user()->places()->save($place);
         Place::find($place->id)->galleries()->attach($request->galleries);
@@ -85,11 +90,17 @@ class PlaceController extends Controller
     {
         $place = Place::find($id);
         $galleries = DB::table('galleries')->select('id', 'name')->get();
+        $areas = DB::table('areas')->select('id', 'name')->get();
         $selectedGalleries = DB::table('gallery_place')->select('gallery_id')->where('place_id', $id)->get();
 
         $galleriesMap = [];
         foreach($galleries as $gallery){
             $galleriesMap[$gallery->id] = $gallery->name;
+        }
+
+        $areasMap = [];
+        foreach($areas as $area){
+            $areasMap[$area->id] = $area->name;
         }
 
         $selectedGalleriesMap = collect($selectedGalleries)->map(function($g){
@@ -99,6 +110,7 @@ class PlaceController extends Controller
         return view('admin.place.edit')
             ->withPlace($place)
             ->with('galleriesMap', $galleriesMap)
+            ->with('areasMap', $areasMap)
             ->with('selectedGalleriesMap', $selectedGalleriesMap);
     }
 
@@ -108,7 +120,7 @@ class PlaceController extends Controller
 
         $this->validate($request, array(
             'name' => 'required|max:255',
-            'description' => 'required|max:255',
+            'description' => 'required|min:50|max:255',
             'space_point' => 'required|numeric',
             'service_point' => 'required|numeric',
             'quality_point' => 'required|numeric',
@@ -123,7 +135,8 @@ class PlaceController extends Controller
             'longitude' => 'required|numeric',
             'latitude' => 'required|numeric',
             'character' => 'required',
-            'review' => 'required'
+            'review' => 'required',
+            'area_id' => 'required'
         ));
 
         $place->update([
@@ -144,10 +157,16 @@ class PlaceController extends Controller
             'longitude' => $request->longitude,
             'latitude' => $request->latitude,
             'character' => $request->character,
-            'review' => $request->review
+            'review' => $request->review,
+            'area_id' => $request->area_id
         ]);
 
-        $place->galleries()->sync($request->galleries);
+        if($request->galleries){
+            $place->galleries()->sync($request->galleries);
+        }
+        else{
+            $place->galleries()->detach();
+        }
 
         Session::flash('success', 'Place was successfully updated.');
         return redirect()->route('admin.places.index');

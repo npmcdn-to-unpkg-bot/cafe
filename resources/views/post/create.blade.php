@@ -35,11 +35,11 @@
 
                 <div class="form-group">
                     <label for="summary">Summary:</label>
-                    <textarea name="summary" id="summary" cols="50" rows="5" class="form-control" required maxlength="255">{{ old('summary') }}</textarea>
+                    <textarea name="summary" id="summary" cols="50" rows="5" class="form-control" required maxlength="255" minlength="50">{{ old('summary') }}</textarea>
                     @if ($errors->has('summary'))
                         <span class="help-block">
-                        <strong>{{ $errors->first('summary') }}</strong>
-                    </span>
+                            <strong>{{ $errors->first('summary') }}</strong>
+                        </span>
                     @endif
                 </div>
 
@@ -48,8 +48,8 @@
                     <textarea name="body" id="body" class="form-control" required>{{ old('body') }}</textarea>
                     @if ($errors->has('body'))
                         <span class="help-block">
-                        <strong>{{ $errors->first('body') }}</strong>
-                    </span>
+                            <strong>{{ $errors->first('body') }}</strong>
+                        </span>
                     @endif
                 </div>
 
