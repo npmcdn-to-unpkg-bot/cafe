@@ -57,7 +57,7 @@
                                             @endif
                                         </ul>
                                     @endif
-                                    <ul class="like-comment">
+                                    <ul class="like-comment" style="padding-left: 0;">
                                         <li>
                                             <a href="#" id="liked-users" data-toggle="modal" data-target="#likedUsers">
                                                 <i class="fa fa-heartbeat" aria-hidden="true"></i> Liked
@@ -480,7 +480,7 @@
                     // update likeable action
                     likeHtml += '<li>';
                     likeHtml += '<a href="#" id="like-post">'
-                    likeHtml += '<i class="fa fa-thumbs-o-up" aria-hidden="true"></i> like';
+                    likeHtml += '<i class="fa fa-thumbs-o-up" aria-hidden="true"></i> Like';
                     likeHtml += '</a>';
                     likeHtml += '</li>';
                     $('#likeable').html(likeHtml);

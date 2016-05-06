@@ -54,7 +54,7 @@ class PostController extends Controller
         $post = Post::find($id);
         $likes = $post->likes;
 
-        $likedUser = [];
+        $likedUsers = [];
         if(count($likes) > 0){
             $likedUsers = User::find(
                 collect($likes)->map(function($like){
