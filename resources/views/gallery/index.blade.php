@@ -22,7 +22,7 @@
                         <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                             <a href="{{ route('galleries.show', $gallery->id) }}" class="item">
                                 <div class="img-container">
-                                    <img alt="" src="{{ $gallery->cover->url('medium') }}">
+                                    <img alt="" src="{{ $gallery->cover->url('medium') }}" class="galllery-cover">
                                 </div>
                                 <div class="info">
                                     <h4 class="item-name bold">{{ $gallery->name }}</h4>
@@ -41,4 +41,11 @@
 @endsection
 
 @section('script')
+    <script>
+        var gallery_cover_min_height = 225;
+        $('.galllery-cover').each(function(index){
+            if($(this).height < gallery_cover_min_height) { gallery_cover_min_height = $(this).height }
+        });
+        $(document).find('.galllery-cover').height(gallery_cover_min_height);
+    </script>
 @endsection

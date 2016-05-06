@@ -32,7 +32,7 @@
 
         <div class="form-group">
             <label for="description">Description:</label>
-            <textarea name="description" id="description" cols="50" rows="5" class="form-control" required maxlength="255">{{ old('description') }}</textarea>
+            <textarea name="description" id="description" cols="50" rows="5" class="form-control" required maxlength="255" minlength="50">{{ old('description') }}</textarea>
             @if ($errors->has('description'))
                 <span class="help-block">
                     <strong>{{ $errors->first('description') }}</strong>
@@ -200,6 +200,21 @@
             @if ($errors->has('galleries'))
                 <span class="help-block">
                     <strong>{{ $errors->first('galleries') }}</strong>
+                </span>
+            @endif
+        </div>
+
+        <div class="form-group">
+            <label for="area_id">Areas:</label>
+            <select name="area_id" id="area_id" required>
+                <option value>Choose an area....</option>
+                @foreach($areas as $area)
+                    <option value="{{ $area->id }}">{{ $area->name }}</option>
+                @endforeach
+            </select>
+            @if ($errors->has('area_id'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('area_id') }}</strong>
                 </span>
             @endif
         </div>

@@ -19,7 +19,7 @@
 <body>
     {{-- Nav bar --}}
     <nav class="navbar top-bar">
-        <div class="container">
+        <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                     <span class="sr-only">Toggle navigation</span>
@@ -34,6 +34,7 @@
                     <li class="{{ $controller == 'HomeController'? 'active' : '' }}"><a href="{{ url('/') }}">Home</a></li>
                     <li class="{{ $controller == 'PlaceController'? 'active' : '' }}"><a href="{{ url('/places') }}">Địa điểm</a></li>
                     <li class="{{ $controller == 'GalleryController'? 'active' : '' }}"><a href="{{ url('/galleries') }}">Bộ sưu tập</a></li>
+                    <li class="{{ $controller == 'AreaController'? 'active' : '' }}"><a href="{{ url('/areas') }}">Khu vực</a></li>
                     <li class="{{ $controller == 'PostController'? 'active' : '' }}"><a href="{{ url('/posts') }}">Blogs</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right bold">
@@ -42,6 +43,7 @@
                         <li><a href="{{ url('/login') }}">Login</a></li>
                         <li><a href="{{ url('/register') }}">Register</a></li>
                     @else
+                        <li><a href="{{ route('posts.create') }}">Create post</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle current-user" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                 <span class="normal-text name">{{ Auth::user()->name }}</span>
@@ -57,9 +59,9 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="search">
-                        <form class="navbar-form" role="search" action="/" method="GET">
+                        <form class="navbar-form" role="search" action="{{ route('queries.search') }}" method="GET">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Tìm kiếm..."/>
+                                <input type="text" name="q" id="q_input" class="form-control" placeholder="Tìm kiếm..."/>
                                 <div class="input-group-btn">
                                     <button class="btn btn-default" type="button">
                                         <span class="fa fa-search"></span>

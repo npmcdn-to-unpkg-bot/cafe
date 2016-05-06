@@ -10,15 +10,12 @@ class Gallery extends Model implements StaplerableInterface
 {
     use EloquentTrait;
 
-    protected $fillable = [
-        'name', 'cover'
-    ];
+    protected $fillable = ['name', 'cover'];
 
     public function __construct(array $attributes = array()) {
         $this->hasAttachedFile('cover', [
             'styles' => [
-                'medium' => '750x469',
-                'thumb' => '100x100'
+                'medium' => '750x469'
             ]
         ]);
 

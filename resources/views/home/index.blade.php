@@ -8,6 +8,32 @@
     {!! Html::style('libs/owlcarousel/owl.carousel.min.css') !!}
     {!! Html::style('libs/owlcarousel/owl.theme.min.css') !!}
     {!! Html::style('css/index.css') !!}
+    {!! Html::style('css/parsley.css') !!}
+    <style>
+        .card .info .description{
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+        }
+
+        .card .info .address{
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 1;
+        }
+
+        .card .info .name a{
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 1;
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -15,7 +41,7 @@
     <header class="header">
         <div class="dotted-overlay">
             <div class="intro align-center">
-                <h1 class="intro-title bold upper-text">RESTAURANT AND EVENTS IN THE BORDERS</h1>
+                <h1 class="intro-title bold upper-text">COFFEE AND EVENTS IN THE BORDERS</h1>
                 <p class="intro-text">
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                     tempor incididunt ut labore et dolore magna aliqua.
@@ -38,139 +64,29 @@
             </p>
             <div class="container">
                 <div class="row align-left">
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                        <div class="card">
-                            <div class="img-container">
-                                <a href="{{ url('/places/1') }}">
-                                    {{ Html::image('img/places/dd1.jpg', '') }}
-                                </a>
-                            </div>
-                            <div class="info">
-                                <div class="name bold"><a href="{{ url('/places/1') }}">MOF Japanese Dessert Cafe</a></div>
-                                <div class="address">30 Lê Lợi, P. Bến Nghé, Quận 1, TP. HCM</div>
-                                <div class="description">
-                                    Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.
+                    @foreach($bestPlaces as $place)
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                            <div class="card">
+                                <div class="img-container">
+                                    <a href="{{ route('places.show', $place->id) }}">
+                                        {{ Html::image($place->cover->url(), '', ['class' => 'best-place-cover']) }}
+                                    </a>
                                 </div>
-                            </div>
-                            <ul class="card-bottom">
-                                <li><i class="fa fa-heart fa-mg-right"></i>30</li>
-                                <li><i class="fa fa-comments fa-mg-right"></i>52</li>
-                                <li class="float-right"><a href="{{ url('/places/1') }}" class="vm-btn">VIEW MORE</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                        <div class="card">
-                            <div class="img-container">
-                                <a href="{{ url('/places/1') }}">
-                                    {{ Html::image('img/places/dd2.jpg', '') }}
-                                </a>
-                            </div>
-                            <div class="info">
-                                <div class="name bold"><a href="{{ url('/places/1') }}">MOF Japanese Dessert Cafe</a></div>
-                                <div class="address">30 Lê Lợi, P. Bến Nghé, Quận 1, TP. HCM</div>
-                                <div class="description">
-                                    Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Nulla porttitor accumsan tincidunt. Proin eget tortor risus.
+                                <div class="info">
+                                    <div class="name bold"><a href="{{ route('places.show', $place->id) }}">{{ $place->name }}</a></div>
+                                    <div class="address">{{ $place->address }}</div>
+                                    <div class="description">{{ $place->description }}</div>
                                 </div>
+                                <ul class="card-bottom">
+                                    <li><i class="fa fa-heart fa-mg-right"></i>{{ $place->likeCount }}</li>
+                                    <li><i class="fa fa-comments fa-mg-right"></i>{{ $place->comments->count() }}</li>
+                                    <li class="float-right"><a href="{{ route('places.show', $place->id) }}" class="vm-btn">VIEW MORE</a></li>
+                                </ul>
                             </div>
-                            <ul class="card-bottom">
-                                <li><i class="fa fa-heart fa-mg-right"></i>30</li>
-                                <li><i class="fa fa-comments fa-mg-right"></i>52</li>
-                                <li class="float-right"><a href="{{ url('/places/1') }}" class="vm-btn">VIEW MORE</a></li>
-                            </ul>
                         </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                        <div class="card">
-                            <div class="img-container">
-                                <a href="{{ url('/places/1') }}">
-                                    {{ Html::image('img/places/dd3.jpg', '') }}
-                                </a>
-                            </div>
-                            <div class="info">
-                                <div class="name bold"><a href="{{ url('/places/1') }}">MOF Japanese Dessert Cafe</a></div>
-                                <div class="address">30 Lê Lợi, P. Bến Nghé, Quận 1, TP. HCM</div>
-                                <div class="description">
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.
-                                </div>
-                            </div>
-                            <ul class="card-bottom">
-                                <li><i class="fa fa-heart fa-mg-right"></i>30</li>
-                                <li><i class="fa fa-comments fa-mg-right"></i>52</li>
-                                <li class="float-right"><a href="{{ url('/places/1') }}" class="vm-btn">VIEW MORE</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                        <div class="card">
-                            <div class="img-container">
-                                <a href="{{ url('/places/1') }}">
-                                    {{ Html::image('img/places/dd1.jpg', '') }}
-                                </a>
-                            </div>
-                            <div class="info">
-                                <div class="name bold"><a href="{{ url('/places/1') }}">MOF Japanese Dessert Cafe</a></div>
-                                <div class="address">30 Lê Lợi, P. Bến Nghé, Quận 1, TP. HCM</div>
-                                <div class="description">
-                                    Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.
-                                </div>
-                            </div>
-                            <ul class="card-bottom">
-                                <li><i class="fa fa-heart fa-mg-right"></i>30</li>
-                                <li><i class="fa fa-comments fa-mg-right"></i>52</li>
-                                <li class="float-right"><a href="{{ url('/places/1') }}" class="vm-btn">VIEW MORE</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                        <div class="card">
-                            <div class="img-container">
-                                <a href="{{ url('/places/1') }}">
-                                    {{ Html::image('img/places/dd2.jpg', '') }}
-                                </a>
-                            </div>
-                            <div class="info">
-                                <div class="name bold"><a href="{{ url('/places/1') }}">MOF Japanese Dessert Cafe</a></div>
-                                <div class="address">30 Lê Lợi, P. Bến Nghé, Quận 1, TP. HCM</div>
-                                <div class="description">
-                                    Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Nulla porttitor accumsan tincidunt. Proin eget tortor risus.
-                                </div>
-                            </div>
-                            <ul class="card-bottom">
-                                <li><i class="fa fa-heart fa-mg-right"></i>30</li>
-                                <li><i class="fa fa-comments fa-mg-right"></i>52</li>
-                                <li class="float-right"><a href="{{ url('/places/1') }}" class="vm-btn">VIEW MORE</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                        <div class="card">
-                            <div class="img-container">
-                                <a href="{{ url('/places/1') }}">
-                                    {{ Html::image('img/places/dd3.jpg', '') }}
-                                </a>
-                            </div>
-                            <div class="info">
-                                <div class="name bold"><a href="{{ url('/places/1') }}">MOF Japanese Dessert Cafe</a></div>
-                                <div class="address">30 Lê Lợi, P. Bến Nghé, Quận 1, TP. HCM</div>
-                                <div class="description">
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.
-                                </div>
-                            </div>
-                            <ul class="card-bottom">
-                                <li><i class="fa fa-heart fa-mg-right"></i>30</li>
-                                <li><i class="fa fa-comments fa-mg-right"></i>52</li>
-                                <li class="float-right"><a href="{{ url('/places/1') }}" class="vm-btn">VIEW MORE</a></li>
-                            </ul>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
-                <a href="{{ url('/places') }}" class="btn btn-main">XEM TẤT CẢ ĐỊA ĐIỂM</a>
+                <a href="{{ route('places.index') }}" class="btn btn-main">XEM TẤT CẢ ĐỊA ĐIỂM</a>
             </div>
         </section>
 
@@ -180,62 +96,19 @@
                 It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.
             </p>
             <div class="row" style="margin-bottom: 45px;">
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 no-padding-lr">
-                    <a href="{{ url('/places') }}" class="img-show-box img-container">
-                        <div class="overlay">
-                            <h4 class="box-name upper-text">Quận 1</h4>
-                        </div>
-                        {{ Html::image('img/cities/city1.jpg', '') }}
-                    </a>
-                </div>
-
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 no-padding-lr">
-                    <a href="{{ url('/places') }}" class="img-show-box img-container">
-                        <div class="overlay">
-                            <h4 class="box-name upper-text">Quận 2</h4>
-                        </div>
-                        {{ Html::image('img/cities/city2.jpg', '') }}
-                    </a>
-                </div>
-
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 no-padding-lr">
-                    <a href="{{ url('/places') }}" class="img-show-box img-container">
-                        <div class="overlay">
-                            <h4 class="box-name upper-text">Quận 3</h4>
-                        </div>
-                        {{ Html::image('img/cities/city3.jpg', '') }}
-                    </a>
-                </div>
-
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 no-padding-lr">
-                    <a href="{{ url('/places') }}" class="img-show-box img-container">
-                        <div class="overlay">
-                            <h4 class="box-name upper-text">Quận 4</h4>
-                        </div>
-                        {{ Html::image('img/cities/city4.jpg', '') }}
-                    </a>
-                </div>
-
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 no-padding-lr">
-                    <a href="{{ url('/places') }}" class="img-show-box img-container">
-                        <div class="overlay">
-                            <h4 class="box-name upper-text">Quận 5</h4>
-                        </div>
-                        {{ Html::image('img/cities/city5.jpg', '') }}
-                    </a>
-                </div>
-
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 no-padding-lr">
-                    <a href="{{ url('/places') }}" class="img-show-box img-container">
-                        <div class="overlay">
-                            <h4 class="box-name upper-text">Quận 6</h4>
-                        </div>
-                        {{ Html::image('img/cities/city6.jpg', '') }}
-                    </a>
-                </div>
+                @foreach($bestAreas as $area)
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 no-padding-lr">
+                        <a href="{{ route('areas.show', $area->id) }}" class="img-show-box img-container">
+                            <div class="overlay">
+                                <h4 class="box-name upper-text">{{ $area->name }}</h4>
+                            </div>
+                            {{ Html::image($area->cover->url(), '', ['class' => 'best-area-cover']) }}
+                        </a>
+                    </div>
+                @endforeach
             </div>
 
-            <a href="{{ url('/places') }}" class="btn btn-main">XEM TẤT CẢ KHU VỰC</a>
+            <a href="{{ route('areas.index') }}" class="btn btn-main">XEM TẤT CẢ KHU VỰC</a>
         </section>
 
         <section class="section align-center" id="best-gallery">
@@ -245,81 +118,22 @@
             </p>
             <div class="container align-left">
                 <div class="row">
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                        <a href="{{ url('galleries/1') }}" class="item">
-                            <div class="img-container">
-                                <img alt="" src="img/items/item1.jpg">
-                            </div>
-                            <div class="info">
-                                <h4 class="item-name bold">Cafe mở cửa 24h</h4>
-                                <div class="item-amount italic">14 Địa điểm</div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                        <a href="{{ url('galleries/1') }}" class="item">
-                            <div class="img-container">
-                                <img alt="" src="img/items/item4.jpg">
-                            </div>
-                            <div class="info">
-                                <h4 class="item-name bold">Cafe giường nằm</h4>
-                                <div class="item-amount italic">10 Địa điểm</div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                        <a href="{{ url('galleries/1') }}" class="item">
-                            <div class="img-container">
-                                <img alt="" src="img/items/item5.jpg">
-                            </div>
-                            <div class="info">
-                                <h4 class="item-name bold">Cafe sân vườn</h4>
-                                <div class="item-amount italic">21 Địa điểm</div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                        <a href="{{ url('galleries/1') }}" class="item">
-                            <div class="img-container">
-                                <img alt="" src="img/items/item6.jpg">
-                            </div>
-                            <div class="info">
-                                <h4 class="item-name bold">Vintage cafe</h4>
-                                <div class="item-amount italic">14 Địa điểm</div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                        <a href="{{ url('galleries/1') }}" class="item">
-                            <div class="img-container">
-                                <img alt="" src="img/items/item7.jpg">
-                            </div>
-                            <div class="info">
-                                <h4 class="item-name bold">Cafe Acoustic</h4>
-                                <div class="item-amount italic">10 Địa điểm</div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                        <a href="{{ url('galleries/1') }}" class="item">
-                            <div class="img-container">
-                                <img alt="" src="img/items/item8.jpg">
-                            </div>
-                            <div class="info">
-                                <h4 class="item-name bold">Cafe Sách</h4>
-                                <div class="item-amount italic">21 Địa điểm</div>
-                            </div>
-                        </a>
-                    </div>
-
+                    @foreach($bestGalleries as $gallery)
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                            <a href="{{ route('galleries.show', $gallery->id) }}" class="item">
+                                <div class="img-container">
+                                    {{ Html::image($gallery->cover->url(), '', ['class' => 'best-gallery-cover']) }}
+                                </div>
+                                <div class="info">
+                                    <h4 class="item-name bold">{{ $gallery->name }}</h4>
+                                    <div class="item-amount italic">{{ $gallery->places->count() }} Địa điểm</div>
+                                </div>
+                            </a>
+                        </div>
+                    @endforeach
                 </div>
             </div>
-            <a href="./gallery/gallery.html" class="btn btn-main">XEM TẤT CẢ BỘ SƯU TẬP</a>
+            <a href="{{ route('galleries.index') }}" class="btn btn-main">XEM TẤT CẢ BỘ SƯU TẬP</a>
         </section>
 
         <section class="section align-center" id="recent-comment">
@@ -383,151 +197,34 @@
             <div class="container">
                 <div class="container">
                     <div class="row align-left">
-                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                            <div class="card">
-                                <div class="img-container">
-                                    <a href="blogs/blog-detail.html"><img alt="" src="img/places/dd1.jpg"></a>
-                                </div>
-                                <div class="info">
-                                    <div class="name bold"><a href="blogs/blog-detail.html">Top 10 Café Biệt Thự sân vườn đẹp nhất Sài Gòn</a></div>
-                                    <div class="description">
-                                        Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.
-                                    </div>
-                                </div>
-                                <ul class="card-bottom">
-                                    <li>
-                                        <a href="#" class="author">
-                                            <img alt="" src="img/blogs/author1.jpg">
-                                            <span class="bold">John Smith</span>
+                        @foreach($latestPosts as $post)
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                <div class="card">
+                                    <div class="img-container">
+                                        <a href="{{ route('posts.show', $post->id) }}">
+                                            {{ Html::image($post->cover->url(), '', ['class' => 'latest-post-cover']) }}
                                         </a>
-                                    </li>
-                                    <li><i class="fa fa-heart fa-mg-right"></i>30</li>
-                                    <li><i class="fa fa-comments fa-mg-right"></i>52</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                            <div class="card">
-                                <div class="img-container">
-                                    <a href="blogs/blog-detail.html"><img alt="" src="img/places/dd2.jpg"></a>
-                                </div>
-                                <div class="info">
-                                    <div class="name bold"><a href="blogs/blog-detail.html">Top 10 Café Biệt Thự sân vườn đẹp nhất Sài Gòn</a></div>
-                                    <div class="description">
-                                        Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Nulla porttitor accumsan tincidunt. Proin eget tortor risus.
                                     </div>
-                                </div>
-                                <ul class="card-bottom">
-                                    <li>
-                                        <a href="#" class="author">
-                                            <img alt="" src="img/blogs/author2.jpg">
-                                            <span class="bold">John Smith</span>
-                                        </a>
-                                    </li>
-                                    <li><i class="fa fa-heart fa-mg-right"></i>30</li>
-                                    <li><i class="fa fa-comments fa-mg-right"></i>52</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                            <div class="card">
-                                <div class="img-container">
-                                    <a href="blogs/blog-detail.html"><img alt="" src="img/places/dd3.jpg"></a>
-                                </div>
-                                <div class="info">
-                                    <div class="name bold"><a href="blogs/blog-detail.html">Top 10 Café Biệt Thự sân vườn đẹp nhất Sài Gòn</a></div>
-                                    <div class="description">
-                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.
+                                    <div class="info">
+                                        <div class="name bold"><a href="{{ route('posts.show', $post->id) }}">{{ $post->title }}</a></div>
+                                        <div class="address"><i class="fa fa-pencil" aria-hidden="true"></i> {{ date('F d, Y', strtotime($post->created_at)) }}</div>
+                                        <div class="description">{{ $post->summary }}</div>
                                     </div>
+                                    <ul class="card-bottom">
+                                        <li>
+                                            <a href="{{ route('profile.show', $post->user->id) }}" class="author">
+                                                <img alt="" src="{{ $post->user->avatar->url('thumb') }}">
+                                                <span class="bold">{{ $post->user->name }}</span>
+                                            </a>
+                                        </li>
+                                        <li><i class="fa fa-heart fa-mg-right"></i>{{ $post->likeCount }}</li>
+                                        <li><i class="fa fa-comments fa-mg-right"></i>{{ $post->comments->count() }}</li>
+                                    </ul>
                                 </div>
-                                <ul class="card-bottom">
-                                    <li>
-                                        <a href="#" class="author">
-                                            <img alt="" src="img/blogs/author3.jpg">
-                                            <span class="bold">John Smith</span>
-                                        </a>
-                                    </li>
-                                    <li><i class="fa fa-heart fa-mg-right"></i>30</li>
-                                    <li><i class="fa fa-comments fa-mg-right"></i>52</li>
-                                </ul>
                             </div>
-                        </div>
-
-                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                            <div class="card">
-                                <div class="img-container">
-                                    <a href="blogs/blog-detail.html"><img alt="" src="img/places/dd1.jpg"></a>
-                                </div>
-                                <div class="info">
-                                    <div class="name bold"><a href="blogs/blog-detail.html">Top 10 Café Biệt Thự sân vườn đẹp nhất Sài Gòn</a></div>
-                                    <div class="description">
-                                        Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.
-                                    </div>
-                                </div>
-                                <ul class="card-bottom">
-                                    <li>
-                                        <a href="#" class="author">
-                                            <img alt="" src="img/blogs/author3.jpg">
-                                            <span class="bold">John Smith</span>
-                                        </a>
-                                    </li>
-                                    <li><i class="fa fa-heart fa-mg-right"></i>30</li>
-                                    <li><i class="fa fa-comments fa-mg-right"></i>52</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                            <div class="card">
-                                <div class="img-container">
-                                    <a href="blogs/blog-detail.html"><img alt="" src="img/places/dd2.jpg"></a>
-                                </div>
-                                <div class="info">
-                                    <div class="name bold"><a href="blogs/blog-detail.html">Top 10 Café Biệt Thự sân vườn đẹp nhất Sài Gòn</a></div>
-                                    <div class="description">
-                                        Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Nulla porttitor accumsan tincidunt. Proin eget tortor risus.
-                                    </div>
-                                </div>
-                                <ul class="card-bottom">
-                                    <li>
-                                        <a href="#" class="author">
-                                            <img alt="" src="img/blogs/author2.jpg">
-                                            <span class="bold">John Smith</span>
-                                        </a>
-                                    </li>
-                                    <li><i class="fa fa-heart fa-mg-right"></i>30</li>
-                                    <li><i class="fa fa-comments fa-mg-right"></i>52</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                            <div class="card">
-                                <div class="img-container">
-                                    <a href="blogs/blog-detail.html"><img alt="" src="img/places/dd3.jpg"></a>
-                                </div>
-                                <div class="info">
-                                    <div class="name bold"><a href="blogs/blog-detail.html">Top 10 Café Biệt Thự sân vườn đẹp nhất Sài Gòn</a></div>
-                                    <div class="description">
-                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard.
-                                    </div>
-                                </div>
-                                <ul class="card-bottom">
-                                    <li>
-                                        <a href="#" class="author">
-                                            <img alt="" src="img/blogs/author1.jpg">
-                                            <span class="bold">John Smith</span>
-                                        </a>
-                                    </li>
-                                    <li><i class="fa fa-heart fa-mg-right"></i>30</li>
-                                    <li><i class="fa fa-comments fa-mg-right"></i>52</li>
-                                </ul>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
-                    <a href="blogs/blogs.html" class="btn btn-main">XEM TẤT CẢ BLOGS</a>
+                    <a href="{{ route('posts.index') }}" class="btn btn-main">XEM TẤT CẢ BLOGS</a>
                 </div>
             </div>
         </section>
@@ -535,16 +232,36 @@
         <section class="section align-center" id="contact">
             <h2 class="s-title bold upper-text white-text">Liên hệ với chúng tôi</h2>
             <div class="container">
-                <form class="contact-form">
+                <form class="contact-form" action="{{ route('contact.store') }}" method="POST" role="form" data-parsley-validate>
+                    {!! csrf_field() !!}
+
                     <div class="form-group">
-                        <input type="text" placeholder="Email" class="form-control"/>
+                        <input type="email" name="email" id="emmail" placeholder="Email" class="form-control" required/>
+                        @if ($errors->has('email'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('email') }}</strong>
+                            </span>
+                        @endif
                     </div>
+
                     <div class="form-group">
-                        <input type="text" placeholder="Title" class="form-control"/>
+                        <input type="text" name="name" id="name" placeholder="Name" class="form-control" required/>
+                        @if ($errors->has('name'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('name') }}</strong>
+                            </span>
+                        @endif
                     </div>
+
                     <div class="form-group">
-                        <textarea class="form-control" placeholder="Message" rows="8"></textarea>
+                        <textarea class="form-control" name="message" id="message" placeholder="Message" rows="8" required></textarea>
+                        @if ($errors->has('message'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('message') }}</strong>
+                            </span>
+                        @endif
                     </div>
+
                     <div class="form-group">
                         <input type="submit" value="Send now" class="btn btn-main" />
                     </div>
@@ -556,6 +273,7 @@
 
 @section('script')
     {!! Html::script('libs/owlcarousel/owl.carousel.min.js') !!}
+    {!! Html::script('js/parsley.min.js') !!}
     <script>
         $(".owl-carousel").owlCarousel({
             singleItem: true,
@@ -580,5 +298,35 @@
             var h = videoHeight <= innerHeight? videoHeight : innerHeight;
             $('.header, .dotted-overlay').css("height", h);
         }
+
+        $(document).ready(function() {
+            // equaling place cover's image height
+            var place_cover_min_height = 224;
+            $('#best-place .best-place-cover').each(function(index){
+                if($(this).height < place_cover_min_height) { place_cover_min_height = $(this).height }
+            });
+            $('#best-place').find('.best-place-cover').height(place_cover_min_height);
+
+            // equaling gallery cover's image height
+            var gallery_cover_min_height = 225;
+            $('#best-gallery .best-galllery-cover').each(function(index){
+                if($(this).height < gallery_cover_min_height) { gallery_cover_min_height = $(this).height }
+            });
+            $('#best-gallery').find('.best-galllery-cover').height(gallery_cover_min_height);
+
+            // equaling post cover's image height
+            var post_cover_min_height = 224;
+            $('#blogs .latest-post-cover').each(function(index){
+                if($(this).height < post_cover_min_height) { post_cover_min_height = $(this).height }
+            });
+            $('#blogs').find('.latest-post-cover').height(post_cover_min_height);
+
+            // equaling area cover's image height
+            var area_cover_min_height = 259;
+            $('#best-area .best-area-cover').each(function(index){
+                if($(this).height < area_cover_min_height) { area_cover_min_height = $(this).height }
+            });
+            $('#best-area').find('.best-area-cover').height(area_cover_min_height);
+        });
     </script>
 @endsection

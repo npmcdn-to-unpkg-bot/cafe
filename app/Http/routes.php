@@ -13,6 +13,9 @@ Route::delete('places/{place}/comments/{comment}', ['uses' => 'PlaceController@d
 Route::post('places/{place}/like', ['uses' => 'PlaceController@like', 'as' => 'places.like']);
 Route::post('places/{place}/unlike', ['uses' => 'PlaceController@unlike', 'as' => 'places.unlike']);
 
+// Areas
+Route::resource('areas', 'AreaController', ['only' => ['index', 'show']]);
+
 // Galleries routes
 Route::resource('galleries', 'GalleryController', ['only' => ['index', 'show']]);
 
@@ -26,6 +29,12 @@ Route::post('posts/{post}/unlike', ['uses' => 'PostController@unlike', 'as' => '
 // Profile routes
 Route::resource('profile', 'ProfileController',  ['only' => ['show', 'edit', 'update']]);
 
+// Query routes
+Route::get('seach', ['uses' => 'QueryController@search', 'as' => 'queries.search']);
+
+// Contact routes
+Route::post('contact', ['uses' => 'ContactController@store', 'as' => 'contact.store']);
+
 // Admin scope routes
 Route::group(['prefix' => 'admin'], function()
 {
@@ -37,6 +46,9 @@ Route::group(['prefix' => 'admin'], function()
 
     // Admin places controller
     Route::resource('places', 'Admin\PlaceController', ['except' => 'show']);
+
+    // Admin areas controller
+    Route::resource('areas', 'Admin\AreaController');
 
     // Admin galleries controller
     Route::resource('galleries', 'Admin\GalleryController');

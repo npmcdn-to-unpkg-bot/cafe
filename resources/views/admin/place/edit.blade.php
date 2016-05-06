@@ -30,7 +30,7 @@
 
     <div class="form-group">
         {{ Form::label('description', "Description:") }}
-        {{ Form::textarea('description', null, array('class' => 'form-control', 'required' => '', 'maxlength' => '255')) }}
+        {{ Form::textarea('description', null, array('class' => 'form-control', 'required' => '', 'maxlength' => '255', 'minlength' => '50')) }}
         @if ($errors->has('description'))
             <span class="help-block">
                 <strong>{{ $errors->first('description') }}</strong>
@@ -194,6 +194,16 @@
         @if ($errors->has('galleries'))
             <span class="help-block">
                 <strong>{{ $errors->first('galleries') }}</strong>
+            </span>
+        @endif
+    </div>
+
+    <div class="form-group">
+        {{ Form::label('area_id', "Area:") }}
+        {{ Form::select('area_id', $areasMap, $place->area_id, ['id' => 'area_id', 'placeholder' => 'Choose an area....', 'required' => '']) }}
+        @if ($errors->has('area_id'))
+            <span class="help-block">
+                <strong>{{ $errors->first('area_id') }}</strong>
             </span>
         @endif
     </div>
