@@ -37,7 +37,7 @@
                                         <span class="bold">{{ $place->user->name }}</span>
                                     </a>
                                 </li>
-                                <li><i class="fa fa-heart fa-mg-right"></i>30</li>
+                                <li><i class="fa fa-heart fa-mg-right"></i>{{ $place->likeCount }}</li>
                                 <li><i class="fa fa-comments fa-mg-right"></i>{{ $place->comments->count() }}</li>
                             </ul>
                         </div>

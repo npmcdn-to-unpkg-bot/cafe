@@ -8,6 +8,7 @@ use App\Http\Requests;
 use Auth;
 use App\Place;
 use App\Comment;
+use App\User;
 
 class PlaceController extends Controller
 {
@@ -25,8 +26,20 @@ class PlaceController extends Controller
     public function show($id)
     {
         $place = Place::find($id);
+        $likes = $place->likes;
+
+        $likedUsers = [];
+        if(count($likes) > 0){
+            $likedUsers = User::find(
+                collect($likes)->map(function($like){
+                    return $like->user_id;
+                })->toArray()
+            );
+        }
+
         return view('place.show')
-            ->withPlace($place);
+            ->withPlace($place)
+            ->with('likedUsers', $likedUsers);
     }
 
     public function storeComment(Request $request, $placeId)
@@ -95,11 +108,63 @@ class PlaceController extends Controller
         }
     }
 
-    public function like(Request $request, $postId){
+    public function like(Request $request, $placeId){
+        if($request->ajax()){
+            $place = Place::find($placeId);
+            $place->like();
 
+            $likedUsers = [];
+            if(count($place->likes) > 0){
+                $users = User::find(
+                    collect($place->likes)->map(function($like){
+                        return $like->user_id;
+                    })->toArray()
+                );
+
+                foreach ($users as $user){
+                    array_push($likedUsers, array(
+                        'user_id' => $user->id,
+                        'username' => $user->name,
+                        'user_avatar_url' => $user->avatar->url('thumb')
+                    ));
+                }
+            }
+
+            return response()->json([
+                'place_id' => $placeId,
+                'like_count' => $place->likeCount,
+                'liked_users' => $likedUsers
+            ]);
+        }
     }
 
-    public function unLike(Request $request, $postId){
+    public function unLike(Request $request, $placeId){
+        if($request->ajax()){
+            $place = Place::find($placeId);
+            $place->unlike();
 
+            $likedUsers = [];
+            if(count($place->likes) > 0){
+                $users = User::find(
+                    collect($place->likes)->map(function($like){
+                        return $like->user_id;
+                    })->toArray()
+                );
+
+                foreach ($users as $user){
+                    array_push($likedUsers, array(
+                        'user_id' => $user->id,
+                        'username' => $user->name,
+                        'user_avatar_url' => $user->avatar->url('thumb')
+                    ));
+                }
+            }
+
+            return response()->json([
+                'place_id' => $placeId,
+                'like_count' => $place->likeCount,
+                'liked_users' => $likedUsers
+            ]);
+        }
     }
 }

@@ -11,7 +11,7 @@ Route::resource('places', 'PlaceController', ['only' => ['index', 'show']]);
 Route::post('places/{place}/comments', ['uses' => 'PlaceController@storeComment', 'as' => 'places.storeComment']);
 Route::delete('places/{place}/comments/{comment}', ['uses' => 'PlaceController@destroyComment', 'as' => 'places.destroyComments']);
 Route::post('places/{place}/like', ['uses' => 'PlaceController@like', 'as' => 'places.like']);
-Route::post('places/{place}/unlike', ['uses' => 'PlaceController@unLike', 'as' => 'places.unLike']);
+Route::post('places/{place}/unlike', ['uses' => 'PlaceController@unlike', 'as' => 'places.unlike']);
 
 // Galleries routes
 Route::resource('galleries', 'GalleryController', ['only' => ['index', 'show']]);

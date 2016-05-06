@@ -28,7 +28,7 @@
                             </div>
                             <div class="pg-bottom">
                                 <ul class="left">
-                                    <li><i class="fa fa-heart fa-mg-right"></i>30</li>
+                                    <li><i class="fa fa-heart fa-mg-right"></i>{{ $place->likeCount }}</li>
                                     <li><i class="fa fa-comments fa-mg-right"></i>{{ $place->comments->count() }}</li>
                                 </ul>
                                 <ul class="right">
@@ -52,7 +52,7 @@
         $(document).ready(function() {
             var min_height = 312;
             $('.gallery-wrapper .place-cover').each(function(index){
-                if($(this).height() < min_height) { min_height = $(this).height() }
+                if($(this).height < min_height) { min_height = $(this).height }
             });
 
             $('.gallery-wrapper .place-cover').each(function(index){
