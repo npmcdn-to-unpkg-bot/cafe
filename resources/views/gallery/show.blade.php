@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    | Gallery
+    | {{ $gallery->name }}
 @endsection
 
 @section('style')

@@ -11,4 +11,8 @@ $(function() {
         $('html, body').animate({scrollTop : 0}, 800);
         return false;
     });
+
+    window.setTimeout(function() { $(".alert").alert('close'); }, 5000);
 });
+
+

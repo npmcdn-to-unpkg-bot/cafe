@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    | Search
+    | Search Result
 @endsection
 
 @section('style')
@@ -45,21 +45,6 @@
                                     </div>
                                 </div>
                             @endforeach
-                                @foreach($result as $p)
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <a href="{{ route('places.show', $p->id) }}">
-                                                <img class="media-object" src="{{ $p->cover->url('thumb') }}" alt="">
-                                            </a>
-                                        </div>
-                                        <div class="media-body">
-                                            <a href="{{ route('places.show', $p->id) }}">
-                                                <h4 class="media-heading bold">{{ $p->name }}</h4>
-                                            </a>
-                                            <p>{{ $p->description }}</p>
-                                        </div>
-                                    </div>
-                                @endforeach
                         </div>
                         <div class="paginate align-center">
                             {!! $result->links() !!}

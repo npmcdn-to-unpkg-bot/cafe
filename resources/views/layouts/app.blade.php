@@ -35,7 +35,7 @@
                     <li class="{{ $controller == 'PlaceController'? 'active' : '' }}"><a href="{{ url('/places') }}">Địa điểm</a></li>
                     <li class="{{ $controller == 'GalleryController'? 'active' : '' }}"><a href="{{ url('/galleries') }}">Bộ sưu tập</a></li>
                     <li class="{{ $controller == 'AreaController'? 'active' : '' }}"><a href="{{ url('/areas') }}">Khu vực</a></li>
-                    <li class="{{ $controller == 'PostController'? 'active' : '' }}"><a href="{{ url('/posts') }}">Blogs</a></li>
+                    <li class="{{ ($controller == 'PostController' && $action != 'create')? 'active' : '' }}"><a href="{{ url('/posts') }}">Blogs</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right bold">
                     <!-- Authentication Links -->
@@ -43,7 +43,7 @@
                         <li><a href="{{ url('/login') }}">Login</a></li>
                         <li><a href="{{ url('/register') }}">Register</a></li>
                     @else
-                        <li><a href="{{ route('posts.create') }}">Create post</a></li>
+                        <li class="{{ ($controller == 'PostController' && $action == 'create')? 'active' : '' }}"><a href="{{ route('posts.create') }}">New post</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle current-user" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                 <span class="normal-text name">{{ Auth::user()->name }}</span>
