@@ -162,7 +162,7 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title">Liked Users</h4>
+                                <h4 class="modal-title"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> Liked</h4>
                             </div>
                             <div class="modal-body">
                                 @foreach($likedUsers as $user)
@@ -174,6 +174,7 @@
                                         </div>
                                         <div class="media-body">
                                             <a href="{{ route('profile.show', $user->id) }}">{{ $user->name }}</a>
+                                            <p>{{ $user->email }}</p>
                                         </div>
                                     </div>
                                 @endforeach

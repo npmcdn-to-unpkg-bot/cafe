@@ -43,7 +43,6 @@
                         <li><a href="{{ url('/login') }}">Login</a></li>
                         <li><a href="{{ url('/register') }}">Register</a></li>
                     @else
-                        <li class="{{ ($controller == 'PostController' && $action == 'create')? 'active' : '' }}"><a href="{{ route('posts.create') }}">New post</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle current-user" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                 <span class="normal-text name">{{ Auth::user()->name }}</span>
@@ -52,6 +51,7 @@
                             <ul class="dropdown-menu align-right">
                                 <li><a href="{{ route('profile.show', Auth::user()->id) }}">Your profile<i class="fa fa-reddit-alien fa-mg-left"></i></a></li>
                                 <li><a href="{{ route('profile.edit', Auth::user()->id) }}">Edit profile<i class="fa fa-pencil-square fa-mg-left"></i></a></li>
+                                <li><a href="{{ route('posts.create') }}">Create post<i class="fa fa-paint-brush fa-mg-left"></i></a></li>
                                 <li><a href="{{ url('/logout') }}">Logout<i class="fa fa-sign-out fa-mg-left"></i></a></li>
                             </ul>
                         </li>

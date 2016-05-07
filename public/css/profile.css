@@ -1,8 +1,13 @@
+.top-bar {
+    background-color: #333;
+}
+
 .profile{
     position: relative;
     background: url("../img/profile_heade.png") center;
     padding: 40px 0;
     color: #fff;
+    border-bottom: 5px solid #ff9800;
 }
 
 .profile .avatar{
@@ -12,8 +17,14 @@
     border: 3px solid #fff;
 }
 
+.profile  .all-stats{
+    text-align: right;
+    padding: 0 5%;
+}
+
 .profile .stats{
-    margin-right: 10%;
+    margin: 0 20px;
+    display: inline-block;
 }
 
 .profile .stats .number{
@@ -66,4 +77,99 @@
 .no-post .dinosaur-troll{
     display: block;
     margin: 0 auto;
+}
+
+.profile-updating-header{
+    margin: 10px 10% 0 10%;
+    padding: 30px 40px;
+    background: url("../img/creating_post_header_bg.png");
+    background-size: cover;
+}
+
+.profile-updating-header h1, .profile-updating-header h3{
+    font-family: 'Poiret One', cursive;
+    color: #fff;
+}
+
+.profile-updating-header h1{
+    border-bottom: 1px solid #fff;
+    padding-bottom: 20px;
+    display: inline-block;
+    font-weight: bold;
+}
+
+.profile-updating-header h3{
+    margin-top: 10px;
+}
+
+.profile-updating-form{
+    margin: 0 10%;
+    background: #fff;
+    padding: 40px;
+    border: 1px solid #cfcfcf;
+    border-bottom: 10px solid #ccc;
+}
+
+.profile-updating-form .form-group{
+    margin-bottom: 25px;
+}
+
+.profile-updating-form .form-control{
+    border-radius: 0;
+    padding: 20px 15px;
+    box-shadow: none !important;
+    border: 1px solid #bdbdbd;
+}
+
+.profile-updating-form .form-control:focus{
+    border-color: #ffc107;
+}
+
+.profile-updating-form textarea{
+    max-width: 100% !important;
+}
+
+.profile-updating-form label{
+    font-weight: normal;
+}
+
+.profile-updating-form .btn-main{
+    background: #ffc107;
+    color: #fff;
+    border: none;
+    padding: 20px 40px;
+    transition: all ease .3s;
+}
+
+.profile-updating-form .btn-main:hover{
+    background: #ffa000;
+}
+
+#dropzone{
+    border: 10px solid #e0e0e0;
+    border-radius: 100%;
+}
+
+#dropzone.dropped{
+    border: 10px solid #e0e0e0;
+}
+
+#dropzone .dropzone-content img{
+    border-radius: 100% !important;
+}
+
+@media only screen and (max-width: 640px){
+    .profile .col-xs-5, .profile .col-xs-7{
+        width: 100%;
+    }
+
+    .profile .all-stats{
+        display: none;
+    }
+
+    .profile .social-links{
+        position: initial;
+        padding-left: 0;
+        margin-top: 20px;
+    }
 }

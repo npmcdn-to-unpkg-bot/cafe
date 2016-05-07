@@ -12,20 +12,20 @@
 
 @section('content')
     <div id="content">
-        <section class="section blogs"  style="background: #f8f8f8; padding-top: 72px; padding-bottom: 20px;">
+        <section class="section blogs"  style="background: #f8f8f8; padding-top: 72px;">
             {{-- Profile info --}}
             <div class="profile">
                 <div class="row">
-                    <div class="col-lg-5 col-md-5 col-xs-5 align-center">
+                    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 align-center">
                         <img class="avatar img-circle" src="{{ $user->avatar->url('medium') }}" alt="">
                         <h3 class="username">{{ $user->name }}</h3>
                         <p class="email">{{ $user->email }}</p>
                     </div>
-                    <div class="col-lg-7 col-md-7 col-xs-7">
-                        <div class="text-center pull-right stats">
+                    <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7 all-stats ">
+                        <div class="text-center stats">
                             <strong class="number">{{ $user->posts->count() }}</strong><br><span>posts</span>
                         </div>
-                        <div class="text-center pull-right stats">
+                        <div class="text-center stats">
                             <strong class="number">643</strong><br><span>followers</span>
                         </div>
                     </div>
@@ -39,6 +39,8 @@
             {{-- Posts --}}
             @if(count($posts) > 0)
                 <div class="user-posts">
+                    <h2 class="align-center" style="font-family: 'Poiret One', cursive;">All posts</h2>
+                    <hr>
                     <div class="grid">
                         @foreach($posts as $post)
                             <div class="card">

@@ -10,6 +10,14 @@
     {!! Html::style('css/index.css') !!}
     {!! Html::style('css/parsley.css') !!}
     <style>
+        .card{
+            margin-bottom: 45px;
+            box-shadow: none;
+            border: none;
+        }
+        .card .info{
+            border: 1px solid rgba(0, 0, 0, .05);
+        }
         .card .info .description{
             overflow: hidden;
             text-overflow: ellipsis;
@@ -32,6 +40,11 @@
             display: -webkit-box;
             -webkit-box-orient: vertical;
             -webkit-line-clamp: 1;
+        }
+
+        .card .card-bottom{
+            border: 1px solid rgba(0, 0, 0, .05);
+            border-top: none;
         }
     </style>
 @endsection
@@ -137,7 +150,7 @@
         </section>
 
         <section class="section align-center" id="recent-comment">
-            <h2 class="s-title bold upper-text">Bình luận gần đây</h2>
+            <h2 class="s-title bold upper-text">What they say about us?</h2>
             <div class='owl-carousel owl-theme'>
                 <div class='container comment'>
                     <a href="#" class="user">
