@@ -52,6 +52,8 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::find($id);
+        $latestPosts = Post::all()->sortByDesc('created_at')->take(6);
+        $bestPosts = Post::all()->sortByDesc(function($p){ return $p->likeCount; })->take(6);
         $likes = $post->likes;
 
         $likedUsers = [];
@@ -64,6 +66,8 @@ class PostController extends Controller
         }
         return view('post.show')
             ->withPost($post)
+            ->with('latestPosts', $latestPosts)
+            ->with('bestPosts', $bestPosts)
             ->with('likedUsers', $likedUsers);
     }
 

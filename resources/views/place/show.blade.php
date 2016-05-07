@@ -111,7 +111,7 @@
                                 </ul>
                             @endif
                             <ul class="like-comment" style="padding: 0;">
-                                <li>
+                                <li class="{{ $place->likeCount > 0 ? '' : 'hide' }}" id="liked-users">
                                     <a href="#" id="liked-users" data-toggle="modal" data-target="#likedUsers">
                                         <i class="fa fa-heartbeat" aria-hidden="true"></i> Liked
                                     </a>
@@ -359,6 +359,9 @@
                     })
                     $('#likedUsers .modal-body').html(likedUsersHtml);
 
+                    // show #liked-users modal link
+                    $('#liked-users').removeClass('hide');
+
                     // update like count
                     $('#likes-count span').text(data.like_count);
                 },
@@ -401,6 +404,14 @@
                         likedUsersHtml += '</div>';
                     })
                     $('#likedUsers .modal-body').html(likedUsersHtml);
+
+                    // toggle #liked-users modal link
+                    if(data.like_count > 0) {
+                        $('#liked-users').removeClass('hide');
+                    }
+                    else{
+                        $('#liked-users').addClass('hide');
+                    }
 
                     // update like count
                     $('#likes-count span').text(data.like_count);

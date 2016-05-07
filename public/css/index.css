@@ -845,3 +845,7 @@ a{
 .search-results .media:last-child{
   border-bottom: 1px solid #eeeeee;
 }
+
+.hide{
+  display: none;
+}
