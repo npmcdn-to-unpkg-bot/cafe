@@ -1,3 +1,35 @@
+@import url(https://fonts.googleapis.com/css?family=Poiret+One);
+
+body{
+    background: #fff;
+}
+
+#menubar .menubar-head-panel{
+    background: url("../../img/admin_user_bg.jpg") no-repeat center;
+}
+
+#menubar .menubar-head-panel img{
+    display: block;
+    max-width: 48px;
+    max-height: 48px;
+    margin: 0 auto;
+}
+
+.menubar-pin #menubar .menubar-head-panel img{
+    max-width: 120px;
+    max-height: 120px;
+}
+
+.circle{
+    border-radius: 100%;
+}
+
+h1{
+    font-family: 'Poiret One', cursive;
+    font-weight: bold;
+}
+
 .gui-icon i{
     text-align: center;
 }
+

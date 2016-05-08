@@ -960,3 +960,26 @@ hr{
 #likedUsers .modal-body .media .media-body a:hover{
   color: #ffa000;
 }
+
+.pagination li a, .pagination li.active span{
+  background: #424242;
+  margin: 0 5px;
+  width: 30px;
+  height: 30px;
+  color: #FFFFFF;
+  transition: all 0.3s ease;
+  border-radius: 100% !important;
+  border: none;
+  font-size: 12px;
+}
+
+.pagination li.active span{
+  background: #ff9800 !important;
+  color: #fff !important;
+}
+
+.pagination li a:hover{
+  background: #212121;
+  color: #FFFFFF;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.26),0 4px 10px 0 rgba(0,0,0,0.22);
+}

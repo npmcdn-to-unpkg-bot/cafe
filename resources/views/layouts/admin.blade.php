@@ -28,12 +28,12 @@
                     <li class="header-nav-brand" >
                         <div class="brand-holder">
                             <a href="{{ route('admin.dashboard') }}">
-                                <span class="text-lg text-bold text-primary">CAFE ADMIN</span>
+                                <span class="text-lg text-bold text-primary">COFFEE BREAK ADMIN</span>
                             </a>
                         </div>
                     </li>
                     <li>
-                        <a class="btn btn-icon-toggle menubar-toggle" data-toggle="menubar" href="javascript:void(0);">
+                        <a class="btn btn-icon-toggle menubar-toggle" data-toggle="menubar">
                             <i class="fa fa-bars"></i>
                         </a>
                     </li>
@@ -84,18 +84,6 @@
         </div>
 
         <div id="menubar" class="menubar-inverse">
-            <div class="menubar-fixed-panel">
-                <div>
-                    <a class="btn btn-icon-toggle btn-default menubar-toggle" data-toggle="menubar" href="javascript:void(0);">
-                        <i class="fa fa-bars"></i>
-                    </a>
-                </div>
-                <div class="expanded">
-                    <a href="{{ route('admin.dashboard') }}">
-                        <span class="text-lg text-bold text-primary ">CAFE ADMIN</span>
-                    </a>
-                </div>
-            </div>
             <div class="menubar-scroll-panel">
                 <ul id="main-menu" class="gui-controls">
                     <li>
@@ -106,7 +94,7 @@
                     </li>
                     <li>
                         <a href="{{ route('admin.areas.index') }}" class="{{ $controller == 'AreaController' ? 'active' : '' }}">
-                            <div class="gui-icon"><i class="fa fa-puzzle-piece fa-fw"></i></div>
+                            <div class="gui-icon"><i class="fa fa-object-ungroup"></i></div>
                             <span class="title">Areas</span>
                         </a>
                     </li>
