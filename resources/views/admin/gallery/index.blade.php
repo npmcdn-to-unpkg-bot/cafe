@@ -4,56 +4,65 @@
 @endsection
 
 @section('content')
-    <h1>All Gallery</h1>
-
-    <a href="{{ route('admin.galleries.create') }}">New Gallery</a>
-
-    <table id="galleries-table" class="display" cellspacing="0" width="100%">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>Created at</th>
-                <th>Updated adt</th>
-                <th>Number of places</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-
-        <tfoot>
-            <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>Created at</th>
-                <th>Updated adt</th>
-                <th>Number of places</th>
-                <th>Actions</th>
-            </tr>
-        </tfoot>
-
-        <tbody>
-            @foreach($galleries as $gallery)
+    <h1 class="text-xxxl text-light">All Gallery</h1>
+    <div class="table-responsive">
+        <table id="galleries-table" class="table table-striped table-hover">
+            <thead>
                 <tr>
-                    <th><a href="{{ route('admin.galleries.show', $gallery->id) }}">{{ $gallery->id }}</a></th>
-                    <th><a href="{{ route('admin.galleries.show', $gallery->id) }}">{{ $gallery->name }}</a></th>
-                    <th>{{ $gallery->created_at }}</th>
-                    <th>{{ $gallery->updated_at }}</th>
-                    <th>{{ $gallery->places->count() }}</th>
-                    <th>
-                        <div class="edit">
-                            <a href="{{ route('admin.galleries.edit', $gallery->id) }}">Edit</a>
-                        </div>
-                        <div class="delete">
-                            {!! Form::open(['route' => ['admin.galleries.destroy', $gallery->id], 'method' => 'DELETE']) !!}
-                                {!! Form::submit('Delete', ['class' => '']) !!}
-                            {!! Form::close() !!}
-                        </div>
-                    </th>
+                    <th class="align-center">#</th>
+                    <th>Name</th>
+                    <th>Created at</th>
+                    <th>Updated at</th>
+                    <th class="align-center">NO places</th>
+                    <th class="no-sort">Actions</th>
                 </tr>
-            @endforeach
-        </tbody>
-    </table>
+            </thead>
+
+            <tbody>
+                @foreach($galleries as $gallery)
+                    <tr>
+                        <td><a href="{{ route('admin.galleries.show', $gallery->id) }}">{{ $gallery->id }}</a></td>
+                        <td><a href="{{ route('admin.galleries.show', $gallery->id) }}">{{ $gallery->name }}</a></td>
+                        <td>{{ $gallery->created_at }}</td>
+                        <td>{{ $gallery->updated_at }}</td>
+                        <td class="align-center">{{ $gallery->places->count() }}</td>
+                        <td class="table-action">
+                            <div class="edit">
+                                <a href="{{ route('admin.galleries.edit', $gallery->id) }}" class="btn-circle"><i class="fa fa-pencil"></i></a>
+                            </div>
+                            <div class="delete">
+                                {!! Form::open(['route' => ['admin.galleries.destroy', $gallery->id], 'method' => 'DELETE']) !!}
+                                {!! Form::button('<i class="fa fa-trash"></i>', ['type' => 'submit', 'class' => 'btn-circle']) !!}
+                                {!! Form::close() !!}
+                            </div>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+    <a href="{{ route('admin.galleries.create') }}" class="btn ink-reaction btn-raised btn-primary">New Gallery <i class="md md-send"></i></a>
 @endsection
 
 @section('script')
+    <script>
+        $('#galleries-table').DataTable({
+            columnDefs: [{ targets: 'no-sort', orderable: false }],
+            "dom": 'lCfrtip',
+            "order": [],
+            "colVis": {
+                "buttonText": "Columns",
+                "overlayFade": 0,
+                "align": "right"
+            },
+            "language": {
+                "lengthMenu": '_MENU_ entries per page',
+                "search": '<i class="fa fa-search"></i>',
+                "paginate": {
+                    "previous": '<i class="fa fa-angle-left"></i>',
+                    "next": '<i class="fa fa-angle-right"></i>'
+                }
+            }
+        });
+    </script>
 @endsection

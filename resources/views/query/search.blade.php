@@ -7,6 +7,20 @@
 @section('style')
     {!! Html::style('css/index.css') !!}
     {!! Html::style('css/blog.css') !!}
+    <style>
+        .footer{
+            display: none;
+        }
+        a{
+            color: #ffc107;
+            transition: all ease .3s;
+        }
+
+        a:hover{
+            color: #ff9800;
+            text-decoration: underline !important;
+        }
+    </style>
 @endsection
 
 @section('content')

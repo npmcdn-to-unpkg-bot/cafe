@@ -1,37 +1,55 @@
 @extends('layouts.admin')
 
 @section('style')
+    {!! Html::style('css/parsley.css') !!}
+    <style>
+        body{
+            background: #e5e6e6;
+        }
+    </style>
 @endsection
 
 @section('content')
-    <h1>New Area</h1>
-    <form action="{{ route('admin.areas.store') }}" method="POST" accept-charset="UTF-8" enctype="multipart/form-data" data-parsley-validate>
-        {!! csrf_field() !!}
+    <div class="card">
+        <div class="card-head style-primary">
+            <header>Creat area - Fill out the form below to create area</header>
+        </div>
+        <div class="card-body">
+            <form action="{{ route('admin.areas.store') }}" class="form" method="POST" accept-charset="UTF-8" enctype="multipart/form-data" data-parsley-validate>
+                {!! csrf_field() !!}
 
-        <div class="form-group">
-            <label for="name">Name:</label>
-            <input type="text" name="name" id="name" class="form-control" required maxlength="20" value="{{ old('name') }}">
-            @if ($errors->has('name'))
-                <span class="help-block">
+                <div class="form-group floating-label">
+                    <input type="text" name="name" id="name" class="form-control" required maxlength="20" value="{{ old('name') }}">
+                    <label for="name">Name</label>
+                    @if ($errors->has('name'))
+                        <span class="help-block">
                         <strong>{{ $errors->first('name') }}</strong>
                     </span>
-            @endif
-        </div>
+                    @endif
+                </div>
 
-        <div class="form-group">
-            <label for="cover">Cover Image:</label>
-            <input type="file" name="cover" id="cover" class="form-control" required >
-            @if ($errors->has('cover'))
-                <span class="help-block">
+                <div class="form-group">
+                    <label for="cover" style="font-size: 13px; font-weight: 500;">Cover</label>
+                    <div id="dropzone">
+                        <div class="dropzone-content">
+                            <h3>Drop files here or click to upload.</h3>
+                            <em>(This is just a demo dropzone. Selected files are <strong>not</strong> actually uploaded.)</em>
+                        </div>
+                        <input type="file" name="cover" id="cover" required>
+                    </div>
+                    @if ($errors->has('cover'))
+                        <span class="help-block">
                             <strong>{{ $errors->first('cover') }}</strong>
                         </span>
-            @endif
-        </div>
+                    @endif
+                </div>
 
-        <div class="form-action">
-            <input type="submit" value="Create Gallery!" class="btn btn-success btn-lg btn-block"/>
+                <div class="form-action">
+                    <input type="submit" value="Create" class="btn ink-reaction btn-raised btn-lg btn-primary pull-right"/>
+                </div>
+            </form>
         </div>
-    </form>
+    </div>
 @endsection
 
 @section('script')

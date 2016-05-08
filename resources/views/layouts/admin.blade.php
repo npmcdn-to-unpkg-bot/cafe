@@ -17,6 +17,9 @@
     {!! Html::style('css/admin/cover-bootstrap.css') !!}
     {!! Html::style('css/admin/materialadmin.css') !!}
     {!! Html::style('css/admin/material-design-iconic-font.min.css') !!}
+    {!! Html::style('css/admin/jquery.dataTables.css') !!}
+    {!! Html::style('css/admin/dataTables.colVis.css') !!}
+    {!! Html::style('css/admin/dataTables.tableTools.css') !!}
     {!! Html::style('css/admin/admin.css') !!}
     @yield('style')
 </head>
@@ -122,12 +125,6 @@
                             <span class="title">Users</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="{{ route('admin.users.index') }}" class="{{ $controller == 'ContactController' ? 'active' : '' }}">
-                            <div class="gui-icon"><i class="md md-email"></i></div>
-                            <span class="title">Contacts</span>
-                        </a>
-                    </li>
                 </ul>
                 <div class="menubar-foot-panel">
                     <small class="no-linebreak hidden-folded">
@@ -143,6 +140,10 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     {!! Html::script('js/admin/jquery.nanoscroller.min.js') !!}
     {!! Html::script('js/admin/App.min.js') !!}
+    {!! Html::script('js/admin/jquery.dataTables.min.js') !!}
+    {!! Html::script('js/admin/ColVis/js/dataTables.colVis.min.js') !!}
+    {!! Html::script('js/admin/TableTools/js/dataTables.tableTools.min.js') !!}
+    {!! Html::script('js/admin/admin.js') !!}
     @yield('script')
 </body>
 </html>

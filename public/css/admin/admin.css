@@ -4,28 +4,12 @@ body{
     background: #fff;
 }
 
-#menubar .menubar-head-panel{
-    background: url("../../img/admin_user_bg.jpg") no-repeat center;
-}
-
-#menubar .menubar-head-panel img{
-    display: block;
-    max-width: 48px;
-    max-height: 48px;
-    margin: 0 auto;
-}
-
-.menubar-pin #menubar .menubar-head-panel img{
-    max-width: 120px;
-    max-height: 120px;
-}
-
-.circle{
-    border-radius: 100%;
-}
-
 h1{
-    font-family: 'Poiret One', cursive;
+    color: #0aa89e;
+    font-weight: 300;
+}
+
+.bold{
     font-weight: bold;
 }
 
@@ -33,3 +17,91 @@ h1{
     text-align: center;
 }
 
+.circle{
+    border-radius: 100%;
+}
+
+.align-center{
+    text-align: center !important;
+}
+
+.table-action div{
+    display: inline-block;
+    margin: 0 5px;
+}
+
+.table-action div:first-child{
+    margin-left: 0;
+}
+
+.btn-circle{
+    background: #9c27b0;
+    border: none !important;
+    width: 25px;
+    height: 25px;
+    display: block;
+    text-align: center;
+    color: #fff !important;
+    border-radius: 100%;
+    transition: all ease .3s;
+}
+
+.btn-circle:hover{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.16), 0 4px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+.parsley-errors-list{
+    position: absolute;
+    bottom: -20px;
+}
+
+
+/* dropzone */
+#dropzone {
+    position: relative;
+    border-bottom: 2px solid #0AA89E;
+    color: #e0e0e0;
+    margin: 20px auto;
+    text-align: center;
+}
+
+#dropzone.hover {
+    border-bottom: 2px solid #9c27b0;
+    color: #9c27b0;
+}
+
+#dropzone.dropped {
+    background: #fff;
+    border-bottom: 2px solid #0AA89E;
+}
+
+#dropzone .dropzone-content{
+    width: 100%;
+    color: #000;
+    padding: 20px 0;
+}
+
+#dropzone .parsley-errors-list{
+    position: absolute;
+    bottom: 5px;
+    font-size: 16px;
+    text-align: center;
+    width: 100%;
+    color: #B94A48;
+}
+
+#dropzone img {
+    vertical-align: top;
+    display: inline-block;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+#dropzone [type="file"] {
+    cursor: pointer;
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+}
