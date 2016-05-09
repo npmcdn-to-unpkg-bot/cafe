@@ -4,63 +4,77 @@
 @endsection
 
 @section('content')
-    <h1>Gallery: {{ $gallery->name }}</h1>
-    <table id="places-table" class="display" cellspacing="0" width="100%">
-        <thead>
-        <tr>
-            <th>#</th>
-            <th>Name</th>
-            <th>Address</th>
-            <th>Phone number</th>
-            <th>Point</th>
-            <th>Open time</th>
-            <th>Close time</th>
-            <th>Start price</th>
-            <th>End price</th>
-            <th>Actions</th>
-        </tr>
-        </thead>
-
-        <tfoot>
-        <tr>
-            <th>#</th>
-            <th>Name</th>
-            <th>Address</th>
-            <th>Phone number</th>
-            <th>Point</th>
-            <th>Open time</th>
-            <th>Close time</th>
-            <th>Start price</th>
-            <th>End price</th>
-            <th>Actions</th>
-        </tr>
-        </tfoot>
-
-        <tbody>
-        @foreach($gallery->places as $place)
+    <h1 class="text-xxxl text-light">Gallery: {{ $gallery->name }}</h1>
+    <div class="table-responsive">
+        <table id="places-table" class="table table-striped table-hover">
+            <thead>
             <tr>
-                <th><a href="{{ route('places.show', $place->id) }}">{{ $place->id }}</a></th>
-                <th><a href="{{ route('places.show', $place->id) }}">{{ $place->name }}</a></th>
-                <th>{{ $place->address }}</th>
-                <th>{{ $place->phone_number }}</th>
-                <th>{{ number_format(($place->space_point + $place->service_point + $place->quality_point + $place->address_point + $place->price_point)/5, 1, '.', ',') }}</th>
-                <th>{{ $place->price_point }}</th>
-                <th>{{ $place->open_time }}</th>
-                <th>{{ $place->close_time }}</th>
-                <th>{{ number_format($place->start_price, 0, '.', ',') }}</th>
-                <th>{{ number_format($place->end_price, 0, '.', ',') }}</th>
-                <th>
-                    <div class="delete">
-                        {!! Form::open(['route' => ['admin.galleries.removePlace', $gallery->id, $place->id], 'method' => 'DELETE']) !!}
-                            {!! Form::submit('Remove', ['class' => '']) !!}
-                        {!! Form::close() !!}
-                    </div>
-                </th>
+                <th>Name</th>
+                <th class="no-sort">Address</th>
+                <th class="align-center">Space</th>
+                <th class="align-center">Service</th>
+                <th class="align-center">Quality</th>
+                <th class="align-center">Address</th>
+                <th class="align-center">Price</th>
+                <th>Open</th>
+                <th>Close</th>
+                <th class="align-center">S.Price</th>
+                <th class="align-center">E.Price</th>
+                <th class="no-sort">Actions</th>
             </tr>
-        @endforeach
-        </tbody>
-    </table>
+            </thead>
+
+            <tbody>
+            @foreach($gallery->places as $place)
+                <tr>
+                    <td><a href="{{ route('places.show', $place->id) }}" target="_blank">{{ $place->name }}</a></td>
+                    <td>{{ substr($place->address, 0, 30) }}{{ strlen($place->address) > 30 ? "..." : "" }}</td>
+                    <td class="align-center">{{ number_format($place->space_point, '1', '.', ',') }}</td>
+                    <td class="align-center">{{ number_format($place->service_point, '1', '.', ',') }}</td>
+                    <td class="align-center">{{ number_format($place->quality_point, '1', '.', ',') }}</td>
+                    <td class="align-center">{{ number_format($place->address_point, '1', '.', ',') }}</td>
+                    <td class="align-center">{{ number_format($place->price_point, '1', '.', ',') }}</td>
+                    <td>{{ $place->open_time }}</td>
+                    <td>{{ $place->close_time }}</td>
+                    <td class="align-center">{{ number_format($place->start_price, 0, '.', ',') }}</td>
+                    <td class="align-center">{{ number_format($place->end_price, 0, '.', ',') }}</td>
+                    <td class="table-action" width="9%">
+                        <div class="edit">
+                            <a href="{{ route('admin.places.edit', $place->id) }}" class="btn-circle"><i class="fa fa-pencil"></i></a>
+                        </div>
+                        <div class="delete">
+                            {!! Form::open(['route' => ['admin.places.destroy', $place->id], 'method' => 'DELETE']) !!}
+                            {!! Form::button('<i class="fa fa-trash"></i>', ['type' => 'submit', 'class' => 'btn-circle']) !!}
+                            {!! Form::close() !!}
+                        </div>
+                    </td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
+    </div>
 @endsection
 
 @section('script')
+    <script>
+        $('#places-table').DataTable({
+            columnDefs: [{ targets: 'no-sort', orderable: false }],
+            "dom": 'lCfrtip',
+            "order": [],
+            "colVis": {
+                "buttonText": "Columns",
+                "overlayFade": 0,
+                "align": "right"
+            },
+            "language": {
+                "lengthMenu": '_MENU_ entries per page',
+                "search": '<i class="fa fa-search"></i>',
+                "paginate": {
+                    "previous": '<i class="fa fa-angle-left"></i>',
+                    "next": '<i class="fa fa-angle-right"></i>'
+                }
+            }
+        });
+    </script>
 @endsection
+

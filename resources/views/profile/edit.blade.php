@@ -39,7 +39,7 @@
                         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
                             <div class="form-group">
                                 {{ Form::label('name', 'Username') }}
-                                {{ Form::text('name', (old('name') == null)? $user->name : old('name'), array('class' => 'form-control', 'required' => '', 'maxlength' => '255')) }}
+                                {{ Form::text('name', (old('name') == null)? $user->name : old('name'), array('class' => 'form-control', 'required' => '', 'maxlength' => '25')) }}
                                 @if ($errors->has('name'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('name') }}</strong>

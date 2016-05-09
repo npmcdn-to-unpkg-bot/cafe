@@ -4,10 +4,10 @@
 @section('content')
     <div class="sform" style="margin-top: 70px;">
         <h1>Forgot password</h1>
-        <form role="form" method="POST" action="{{ url('/password/email') }}">
+        <form role="form" method="POST" action="{{ url('/password/email') }}" data-parsley-validate>
             {!! csrf_field() !!}
             <div class="form-group">
-                <input type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Email">
+                <input type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Email" required>
                 @if ($errors->has('email'))
                     <span class="help-block">
                         <strong>{{ $errors->first('email') }}</strong>

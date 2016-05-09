@@ -41,7 +41,7 @@ class ProfileController extends Controller
     {
         if(Auth::user()->id == $id){
             $this->validate($request, array(
-                'name' => 'required|max:255',
+                'name' => 'required|max:25',
                 'email' => 'required|email',
                 'password' => 'min:6|confirmed',
                 'current_password' => 'required'

@@ -32,7 +32,7 @@
                             <ul class="card-bottom">
                                 <li>
                                     <a href="{{ route('profile.show', $post->user->id) }}" class="author">
-                                        <img alt="" src="../img/blogs/author1.jpg">
+                                        <img alt="" src="{{ $post->user->avatar->url('thumb') }}">
                                         <span>{{ $post->user->name }}</span>
                                     </a>
                                 </li>
@@ -51,10 +51,13 @@
 
 @section('script')
     <script src="https://npmcdn.com/masonry-layout@4.0/dist/masonry.pkgd.min.js"></script>
+    <script src="https://npmcdn.com/imagesloaded@4.1/imagesloaded.pkgd.min.js"></script>
     <script>
-        $('.grid').masonry({
-            itemSelector: '.card',
-            isFitWidth: true
+        $('.grid').imagesLoaded(function () {
+            $('.grid').masonry({
+                itemSelector: '.card',
+                isFitWidth: true
+            });
         });
     </script>
 @endsection

@@ -5,8 +5,8 @@
 @endsection
 
 @section('style')
-    {!! Html::style('libs/owlcarousel/owl.carousel.min.css') !!}
-    {!! Html::style('libs/owlcarousel/owl.theme.min.css') !!}
+    {!! Html::style('css/owlcarousel/owl.carousel.min.css') !!}
+    {!! Html::style('css/owlcarousel/owl.theme.min.css') !!}
     {!! Html::style('css/index.css') !!}
     {!! Html::style('css/parsley.css') !!}
     <style>
@@ -285,7 +285,7 @@
 @endsection
 
 @section('script')
-    {!! Html::script('libs/owlcarousel/owl.carousel.min.js') !!}
+    {!! Html::script('js/owl.carousel.min.js') !!}
     {!! Html::script('js/parsley.min.js') !!}
     <script>
         $(".owl-carousel").owlCarousel({
@@ -322,10 +322,10 @@
 
             // equaling gallery cover's image height
             var gallery_cover_min_height = 225;
-            $('#best-gallery .best-galllery-cover').each(function(index){
+            $('#best-gallery .best-gallery-cover').each(function(index){
                 if($(this).height < gallery_cover_min_height) { gallery_cover_min_height = $(this).height }
             });
-            $('#best-gallery').find('.best-galllery-cover').height(gallery_cover_min_height);
+            $('#best-gallery').find('.best-gallery-cover').height(gallery_cover_min_height);
 
             // equaling post cover's image height
             var post_cover_min_height = 224;

@@ -13,6 +13,8 @@
                     <th>Title</th>
                     <th>Summary</th>
                     <th>Author</th>
+                    <th>Likes</th>
+                    <th>Comments</th>
                     <th>Updated at</th>
                     <th class="no-sort">Actions</th>
                 </tr>
@@ -25,6 +27,8 @@
                         <td><a href="{{ route('posts.show', $post->id) }}" target="_blank">{{ $post->title }}</a></td>
                         <td>{{ substr($post->summary, 0, 30) }}{{ strlen($post->summary) > 30 ? "..." : "" }}</td>
                         <td><a href="{{ route('profile.show', $post->user->id) }}" target="_blank">{{ $post->user->name }}</a></td>
+                        <td>{{ $post->likeCount }}</td>
+                        <td>{{ $post->comments->count() }}</td>
                         <td>{{ $post->updated_at }}</td>
                         <td class="table-action">
                             <div class="edit">

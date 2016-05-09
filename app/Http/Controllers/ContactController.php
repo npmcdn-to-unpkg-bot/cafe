@@ -27,7 +27,7 @@ class ContactController extends Controller
             function($message)
             {
                 $message->from('sender@gmail.com');
-                $message->to('cb@gmail.com', 'Admin')->subject('Coffee break Contact');
+                $message->to('admin@gmail.com', 'Admin')->subject('COFFEE BREAK FEEDBACK...');
             }
         );
 

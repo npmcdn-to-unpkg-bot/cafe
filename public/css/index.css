@@ -605,6 +605,13 @@ a{
   border-color: #ffc107;
 }
 
+.contact-form .parsley-errors-list{
+  text-align: left;
+  font-size: 13px;
+  color: #EE6E73;
+  font-weight: bold;
+}
+
 /* footer style */
 .footer{
   background: #262626;
@@ -961,7 +968,7 @@ hr{
   color: #ffa000;
 }
 
-.pagination li a, .pagination li.active span{
+.pagination li a, .pagination li.active span, .pagination li.disabled span{
   background: #424242;
   margin: 0 5px;
   width: 30px;
@@ -977,6 +984,12 @@ hr{
   background: #ff9800 !important;
   color: #fff !important;
 }
+
+.pagination li.disabled span{
+  background: #424242 !important;
+  color: #fff !important;
+}
+
 
 .pagination li a:hover{
   background: #212121;

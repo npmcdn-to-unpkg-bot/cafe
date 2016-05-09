@@ -35,7 +35,7 @@
                                 {!! Form::button('<i class="fa fa-trash"></i>', ['type' => 'submit', 'class' => 'btn-circle']) !!}
                                 {!! Form::close() !!}
                             </div>
-                        </td>
+                        </th>
                     </tr>
                 @endforeach
             </tbody>

@@ -3,10 +3,10 @@
 @section('content')
     <div class="sform" style="margin-top: 70px;">
         <h1>Login</h1>
-        <form role="form" method="POST" action="{{ url('/login') }}">
+        <form role="form" method="POST" action="{{ url('/login') }}" data-parsley-validate>
             {!! csrf_field() !!}
             <div class="form-group">
-                <input type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Email">
+                <input type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Email" required>
                 @if ($errors->has('email'))
                     <span class="help-block">
                         <strong>{{ $errors->first('email') }}</strong>
@@ -14,7 +14,7 @@
                 @endif
             </div>
             <div class="form-group">
-                <input type="password" class="form-control" name="password" placeholder="Password">
+                <input type="password" class="form-control" name="password" placeholder="Password" required>
 
                 @if ($errors->has('password'))
                     <span class="help-block">

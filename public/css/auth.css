@@ -93,8 +93,9 @@ a:hover{
   margin-bottom: 5px;
 }
 
-.help-block{
+.help-block, .parsley-errors-list{
   text-align: left;
   font-size: 13px;
   color: #EE6E73;
+  font-weight: bold;
 }

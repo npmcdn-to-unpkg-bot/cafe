@@ -5,9 +5,9 @@
 @endsection
 
 @section('style')
-    {!! Html::style('libs/fancybox/source/jquery.fancybox.css') !!}
-    {!! Html::style('libs/fancybox/source/helpers/jquery.fancybox-buttons.css') !!}
-    {!! Html::style('libs/fancybox/source/helpers/jquery.fancybox-thumbs.css') !!}
+    {!! Html::style('css/fancybox/source/jquery.fancybox.css') !!}
+    {!! Html::style('css/fancybox/source/helpers/jquery.fancybox-buttons.css') !!}
+    {!! Html::style('css/fancybox/source/helpers/jquery.fancybox-thumbs.css') !!}
     {!! Html::style('css/index.css') !!}
     {!! Html::style('css/blog.css') !!}
     {!! Html::style('css/place.css') !!}
@@ -22,7 +22,7 @@
                         <div class="row" style="padding-bottom: 20px;">
                             <div class="col-md-4 col-sm-4 col-xs-4" id="place-thumb">
                                 <a href="{{ route('places.show', $place->id) }}">
-                                    <div class="place-details-thumbnail"></div>
+                                    <div class="place-details-thumbnail" style='background: url("{{ $place->cover->url() }}");'></div>
                                 </a>
                             </div>
                             <div class="col-md-8 col-sm-8 col-xs-8 place-details-text" id="place-full-info">
@@ -188,11 +188,11 @@
 @endsection
 
 @section('script')
-    {!! Html::script('libs/fancybox/lib/jquery.mousewheel-3.0.6.pack.js') !!}
-    {!! Html::script('libs/fancybox/source/jquery.fancybox.pack.js') !!}
-    {!! Html::script('libs/fancybox/source/helpers/jquery.fancybox-buttons.js') !!}
-    {!! Html::script('libs/fancybox/source/helpers/jquery.fancybox-media.js') !!}
-    {!! Html::script('libs/fancybox/source/helpers/jquery.fancybox-thumbs.js') !!}
+    {!! Html::script('js/fancybox/lib/jquery.mousewheel-3.0.6.pack.js') !!}
+    {!! Html::script('js/fancybox/source/jquery.fancybox.pack.js') !!}
+    {!! Html::script('js/fancybox/source/helpers/jquery.fancybox-buttons.js') !!}
+    {!! Html::script('js/fancybox/source/helpers/jquery.fancybox-media.js') !!}
+    {!! Html::script('js/fancybox/source/helpers/jquery.fancybox-thumbs.js') !!}
     {!! Html::script('http://maps.googleapis.com/maps/api/js') !!}
     <script>
         /* google map init */

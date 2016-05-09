@@ -17,7 +17,7 @@
                 It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.
             </p>
             <div class="container">
-                <div class="grid align-left">
+                <div class="grid align-left transitions-enabled">
                     @foreach($places as $place)
                         <div class="card">
                             <div class="img-container">
@@ -53,10 +53,13 @@
 
 @section('script')
     <script src="https://npmcdn.com/masonry-layout@4.0/dist/masonry.pkgd.min.js"></script>
+    <script src="https://npmcdn.com/imagesloaded@4.1/imagesloaded.pkgd.min.js"></script>
     <script>
-        $('.grid').masonry({
-            itemSelector: '.card',
-            isFitWidth: true
+        $('.grid').imagesLoaded(function () {
+            $('.grid').masonry({
+                itemSelector: '.card',
+                isFitWidth: true
+            });
         });
     </script>
 @endsection

@@ -388,8 +388,32 @@
   font-size: 12px;
 }
 
+.image-cover{
+  position: relative;
+  margin-bottom: 15px;
+}
+
 .image-cover img{
   width: 100% !important;
+}
+
+.image-cover .cover-header-text{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, .8);
+  padding: 10px 30px;
+  color: #fff;
+}
+
+.image-cover .cover-header-text .blog-title{
+  color: #ffc107;
+  margin-top: 10px;
+}
+
+.image-cover .cover-header-text .summary{
+  font-style: italic;
 }
 
 #likeable{

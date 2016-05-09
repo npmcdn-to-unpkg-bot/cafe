@@ -29,13 +29,15 @@
                             </div>
                             <div class="image-cover">
                                 <img src="{{ $post->cover->url() }}" >
-                            </div>
-                            <h1 class="blog-title">{{ $post->title }}</h1>
-                            <div class="content">
-                                <div class="content-main">
+                                <div class="cover-header-text">
+                                    <h1 class="blog-title">{{ $post->title }}</h1>
                                     <p class="summary">
                                         {{ $post->summary }}
                                     </p>
+                                </div>
+                            </div>
+                            <div class="content">
+                                <div class="content-main">
                                     {!! $post->body !!}
                                 </div>
 
