@@ -24,7 +24,7 @@
                 @foreach($posts as $post)
                     <tr>
                         <td><a href="{{ route('posts.show', $post->id) }}" target="_blank">{{ $post->id }}</a></td>
-                        <td><a href="{{ route('posts.show', $post->id) }}" target="_blank">{{ $post->title }}</a></td>
+                        <td><a href="{{ route('posts.show', $post->id) }}" target="_blank">{{ substr($post->title, 0, 30) }}{{ strlen($post->title) > 30 ? "..." : "" }}</a></td>
                         <td>{{ substr($post->summary, 0, 30) }}{{ strlen($post->summary) > 30 ? "..." : "" }}</td>
                         <td><a href="{{ route('profile.show', $post->user->id) }}" target="_blank">{{ $post->user->name }}</a></td>
                         <td>{{ $post->likeCount }}</td>

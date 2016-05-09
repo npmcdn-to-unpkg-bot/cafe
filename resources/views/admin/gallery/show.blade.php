@@ -43,7 +43,7 @@
                             <a href="{{ route('admin.places.edit', $place->id) }}" class="btn-circle"><i class="fa fa-pencil"></i></a>
                         </div>
                         <div class="delete">
-                            {!! Form::open(['route' => ['admin.places.destroy', $place->id], 'method' => 'DELETE']) !!}
+                            {!! Form::open(['route' => ['admin.galleries.removePlace', $gallery->id, $place->id], 'method' => 'DELETE']) !!}
                             {!! Form::button('<i class="fa fa-trash"></i>', ['type' => 'submit', 'class' => 'btn-circle']) !!}
                             {!! Form::close() !!}
                         </div>
